@@ -1,0 +1,114 @@
+import type { SVGProps } from "react";
+
+type IconProps = SVGProps<SVGSVGElement> & { name: string };
+
+const paths: Record<string, JSX.Element> = {
+  bolt: <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" />,
+  palette: (
+    <>
+      <path d="M12 3a9 9 0 0 0 0 18c1.1 0 2-.9 2-2 0-.5-.2-1-.5-1.3-.3-.4-.5-.8-.5-1.2 0-1 .8-1.5 1.8-1.5H17a4 4 0 0 0 4-4c0-4.4-4-7-9-7Z" />
+      <circle cx="7.5" cy="11" r="1" />
+      <circle cx="12" cy="8" r="1" />
+      <circle cx="16" cy="11" r="1" />
+    </>
+  ),
+  cart: (
+    <>
+      <circle cx="9" cy="20" r="1.4" />
+      <circle cx="18" cy="20" r="1.4" />
+      <path d="M2 3h3l2.2 12.5a1.5 1.5 0 0 0 1.5 1.2h8.6a1.5 1.5 0 0 0 1.5-1.2L22 7H6" />
+    </>
+  ),
+  sparkles: (
+    <>
+      <path d="M12 3l1.8 4.7L18.5 9l-4.7 1.8L12 15l-1.8-4.2L5.5 9l4.7-1.3L12 3Z" />
+      <path d="M19 14l.8 2.2L22 17l-2.2.8L19 20l-.8-2.2L16 17l2.2-.8L19 14Z" />
+    </>
+  ),
+  chart: (
+    <>
+      <path d="M4 20V4" />
+      <path d="M4 20h16" />
+      <path d="M8 16v-4" />
+      <path d="M12 16V8" />
+      <path d="M16 16v-7" />
+    </>
+  ),
+  wrench: (
+    <path d="M14.5 6a3.5 3.5 0 0 0-4.6 4.3L4 16.2 6.8 19l5.9-5.9A3.5 3.5 0 0 0 17.5 8a3.5 3.5 0 0 0-3-2Z" />
+  ),
+  idea: (
+    <>
+      <path d="M9 18h6" />
+      <path d="M10 21h4" />
+      <path d="M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.3 1 2.5h6c0-1.2.3-1.8 1-2.5A6 6 0 0 0 12 3Z" />
+    </>
+  ),
+  pen: (
+    <>
+      <path d="M16 3l5 5L8 21H3v-5L16 3Z" />
+      <path d="M14 5l5 5" />
+    </>
+  ),
+  code: (
+    <>
+      <path d="m9 8-5 4 5 4" />
+      <path d="m15 8 5 4-5 4" />
+    </>
+  ),
+  rocket: (
+    <>
+      <path d="M5 15c-1.5 1.5-2 5-2 5s3.5-.5 5-2" />
+      <path d="M12 4c3 0 6 3 6 6 0 4-4 7-6 9-2-2-6-5-6-9 0-3 3-6 6-6Z" />
+      <circle cx="12" cy="10" r="2" />
+    </>
+  ),
+  arrow: <path d="M19 12H5m7-7-7 7 7 7" />,
+  check: <path d="m5 12 5 5 9-11" />,
+  github: (
+    <path d="M12 2C6.5 2 2 6.6 2 12.2c0 4.5 2.9 8.3 6.8 9.6.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.4-3.4-1.4-.5-1.1-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5 3.9-1.3 6.8-5.1 6.8-9.6C22 6.6 17.5 2 12 2Z" />
+  ),
+  twitter: (
+    <path d="M17.5 3h3l-7 8 8.2 10.5h-6.4l-5-6.3L7.7 21.5H4.5l7.5-8.6L4 3h6.5l4.6 5.8L17.5 3Zm-1 16.2h1.7L8 4.7H6.2l10.3 14.5Z" />
+  ),
+  instagram: (
+    <>
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.2" cy="6.8" r="1" />
+    </>
+  ),
+  send: (
+    <>
+      <path d="M22 2 11 13" />
+      <path d="M22 2 15 22l-4-9-9-4 20-7Z" />
+    </>
+  ),
+  star: (
+    <path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 17l-5.2 2.7 1-5.8L3.5 9.7l5.9-.9L12 3.5Z" />
+  ),
+  alert: (
+    <>
+      <path d="M12 3 2 20h20L12 3Z" />
+      <path d="M12 10v4" />
+      <path d="M12 17h.01" />
+    </>
+  ),
+};
+
+export default function Icon({ name, ...props }: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.6}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      {...props}
+    >
+      {paths[name] ?? null}
+    </svg>
+  );
+}
