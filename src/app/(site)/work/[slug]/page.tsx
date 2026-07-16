@@ -84,12 +84,22 @@ export default async function ProjectDetail({
               </div>
             </div>
             <div className={`relative h-72 bg-gradient-to-br md:h-[28rem] ${project.tone}`}>
+              {project.live_url ? (
+                <img
+                  src={`https://api.microlink.io/?url=${encodeURIComponent(
+                    project.live_url
+                  )}&screenshot=true&meta=false&embed=screenshot.url&waitUntil=networkidle2&viewport.width=1280&viewport.height=800`}
+                  alt={project.title}
+                  className="absolute inset-0 h-full w-full object-cover object-top"
+                />
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="select-none text-[14rem] font-black leading-none text-white/10">
+                    {project.title.charAt(0)}
+                  </span>
+                </div>
+              )}
               <div className="absolute inset-0 bg-ink/15" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="select-none text-[14rem] font-black leading-none text-white/10">
-                  {project.title.charAt(0)}
-                </span>
-              </div>
               {project.live_url && (
                 <a
                   href={project.live_url}

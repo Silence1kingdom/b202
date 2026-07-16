@@ -6,6 +6,12 @@ import Parallax from "@/components/Parallax";
 import Icon from "@/components/icons";
 import type { Project } from "@/lib/data";
 
+function screenshotUrl(liveUrl: string) {
+  return `https://api.microlink.io/?url=${encodeURIComponent(
+    liveUrl
+  )}&screenshot=true&meta=false&embed=screenshot.url&waitUntil=networkidle2&viewport.width=1280&viewport.height=800`;
+}
+
 export default function ProjectsGrid({ projects }: { projects: Project[] }) {
   const { ref, setChildRef } = useScrollReveal({ staggerMs: 100 });
 
@@ -20,12 +26,21 @@ export default function ProjectsGrid({ projects }: { projects: Project[] }) {
           <article className="card group overflow-hidden rounded-3xl">
             {/* Preview */}
             <div className={`relative h-60 overflow-hidden bg-gradient-to-br md:h-72 ${p.tone}`}>
+              {p.live_url ? (
+                <img
+                  src={screenshotUrl(p.live_url)}
+                  alt={p.title}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                />
+              ) : (
+                <Parallax speed={40} className="absolute inset-0 flex items-center justify-center">
+                  <span className="select-none text-[11rem] font-black leading-none text-white/10 transition-transform duration-500 group-hover:scale-110">
+                    {p.title.charAt(0)}
+                  </span>
+                </Parallax>
+              )}
               <div className="absolute inset-0 bg-ink/20" />
-              <Parallax speed={40} className="absolute inset-0 flex items-center justify-center">
-                <span className="select-none text-[11rem] font-black leading-none text-white/10 transition-transform duration-500 group-hover:scale-110">
-                  {p.title.charAt(0)}
-                </span>
-              </Parallax>
 
               {/* Year */}
               <div className="absolute left-4 top-4 rounded-full bg-ink/60 px-3 py-1 text-xs font-medium text-accent backdrop-blur-sm">
