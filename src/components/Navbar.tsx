@@ -59,7 +59,7 @@ export default function Navbar() {
             <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/20 bg-white text-sm font-extrabold text-ink transition-transform duration-300 group-hover:scale-105">
               b
             </span>
-            <span className="text-lg font-bold tracking-tight text-paper">b202</span>
+            <span className="text-lg font-bold tracking-tight text-paper">B_20</span>
           </a>
 
           <ul className="hidden items-center gap-1 md:flex">

@@ -9,7 +9,7 @@ export default function AdminHeader() {
           b
         </span>
         <div className="leading-tight">
-          <div className="text-sm font-bold text-paper">لوحة تحكم b202</div>
+          <div className="text-sm font-bold text-paper">لوحة تحكم B_20</div>
           <div className="text-[0.65rem] text-white/40">إدارة محتوى الموقع</div>
         </div>
       </div>

@@ -12,7 +12,7 @@ export default async function Dashboard() {
       <div className="mb-8">
         <h1 className="text-3xl font-extrabold tracking-tightest">لوحة التحكم</h1>
         <p className="mt-1.5 text-sm text-white/50">
-          إدارة محتوى موقع b202 من مكان واحد.
+          إدارة محتوى موقع B_20 من مكان واحد.
         </p>
       </div>
 

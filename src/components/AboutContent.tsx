@@ -29,7 +29,7 @@ export default function AboutContent({
               <span className="section-label">عن الفريق</span>
             </div>
             <h1 className="mt-5 text-4xl font-extrabold tracking-tightest md:text-6xl">
-              فريق b202 يبني <span className="text-accent">مواقع تعيش طويلاً</span>
+              فريق B_20 يبني <span className="text-accent">مواقع تعيش طويلاً</span>
             </h1>
             <p className="mt-5 text-lg leading-relaxed text-white/55">
               إحنا فريق صغير من المصممين والمطورين بنحب الشغل الصح. بنبدأ من فكرة بسيطة

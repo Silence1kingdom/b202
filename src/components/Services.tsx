@@ -19,7 +19,7 @@ export default function Services({ services }: { services: Service[] }) {
             كل اللي محتاجه <span className="text-accent">تحت سقف واحد</span>
           </h2>
           <p className="mt-4 text-white/55">
-            من التصميم للتطوير للإطلاق — b202 يغطي كل مرحلة في رحلة موقعك.
+            من التصميم للتطوير للإطلاق — B_20 يغطي كل مرحلة في رحلة موقعك.
           </p>
         </div>
 

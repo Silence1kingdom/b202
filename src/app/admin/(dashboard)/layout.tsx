@@ -22,7 +22,7 @@ export default async function DashboardLayout({
             b
           </span>
           <span className="text-lg font-extrabold tracking-tightest">
-            b202 <span className="text-accent">admin</span>
+            B_20 <span className="text-accent">admin</span>
           </span>
         </Link>
 

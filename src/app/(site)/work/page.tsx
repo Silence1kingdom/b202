@@ -6,9 +6,9 @@ import { getProjects } from "@/lib/queries";
 export const revalidate = 300;
 
 export const metadata: Metadata = {
-  title: "الأعمال — b202",
+  title: "الأعمال — B_20",
   description:
-    "معرض أعمال فريق b202: متاجر إلكترونية، منتجات SaaS، مواقع تعريفية، ومنصات تعليمية.",
+    "معرض أعمال فريق B_20: متاجر إلكترونية، منتجات SaaS، مواقع تعريفية، ومنصات تعليمية.",
 };
 
 export default async function WorkPage() {

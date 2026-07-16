@@ -50,20 +50,21 @@ function buildWhatsappMessage(form: {
   const budget = BUDGET_LABELS[form.budget]
     || (form.budget ? `${escapeWhatsapp(form.budget)} جنيه` : "لم تحدد");
 
-  return `━━━ b202 ━━━
-مرحباً ${name} 👋
-عندك طلب جديد، وده تفاصيله:
+  return `━━━ B_20 ━━━
+*مرحباً* ${name} 
+*عندك طلب جديد، وده تفاصيله:*
 
-👤 الاسم: ${name}
-📧 البريد: ${escapeWhatsapp(form.email)}
-💰 الميزانية: ${budget}
-📝 الرسالة:
+*الاسم:* ${name}
+*البريد:* ${escapeWhatsapp(form.email)}
+*الميزانية:* ${budget}
+*الرسالة:*
 ${escapeWhatsapp(form.message)}
 
-📅 التاريخ: ${date}
-⏰ الوقت: ${time}
+*التاريخ:* ${date}
+*الوقت:* ${time}
 
-متحمسين نبدأ معاكم 🚀 — نستنى ردك.`;
+ *سوف يتم الرد في اقرب وقت*
+`;
 }
 
 export default function Contact() {

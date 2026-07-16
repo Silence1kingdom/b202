@@ -29,7 +29,7 @@ export default function Hero({ stats }: { stats: Stat[] }) {
         <Parallax speed={50} fade className="max-w-4xl">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5">
             <span className="pulse-dot !h-2 !w-2" />
-            <span className="text-xs text-white/70">فريق b202 — متاح للعمل الآن</span>
+            <span className="text-xs text-white/70">فريق B_20 — متاح للعمل الآن</span>
           </div>
 
           <h1 className="mt-8 text-5xl font-extrabold leading-[1.1] tracking-tightest md:text-7xl lg:text-8xl">
@@ -42,7 +42,7 @@ export default function Hero({ stats }: { stats: Stat[] }) {
           </h1>
 
           <p className="mt-7 max-w-xl text-lg leading-relaxed text-white/55">
-            فريق b202 يصمم ويطور تجارب رقمية سريعة وحديثة وموثوقة — من فكرة
+            فريق B_20 يصمم ويطور تجارب رقمية سريعة وحديثة وموثوقة — من فكرة
             بسيطة إلى منتج حقيقي على Vercel.
           </p>
 

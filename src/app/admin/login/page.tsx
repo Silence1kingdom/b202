@@ -29,11 +29,11 @@ export default function LoginPage() {
             b
           </div>
           <h1 className="mt-5 text-3xl font-extrabold tracking-tightest text-paper">
-            b202 <span className="text-accent">admin</span>
+            B_20 <span className="text-accent">admin</span>
           </h1>
           <p className="mt-2 flex items-center justify-center gap-2 text-sm text-white/50">
             <span className="pulse-dot !h-2 !w-2" />
-            لوحة تحكم فريق b202
+            لوحة تحكم فريق B_20
           </p>
         </div>
 
@@ -72,7 +72,7 @@ export default function LoginPage() {
         </form>
 
         <p className="mt-6 text-center text-xs text-white/35">
-          محمي بجلسة موقّعة — صفحة خاصة بفريق b202 فقط.
+          محمي بجلسة موقّعة — صفحة خاصة بفريق B_20 فقط.
         </p>
       </div>
     </main>

@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "404 — الصفحة مش موجودة | b202",
+  title: "404 — الصفحة مش موجودة | B_20",
 };
 
 export default function NotFound() {

@@ -26,20 +26,20 @@ const tajawal = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "b202 — نبني مواقع تعيش طويلاً",
+  title: "B_20 — نبني مواقع تعيش طويلاً",
   description:
-    "فريق b202 لبناء المواقع والمنتجات الرقمية. نصمم ونبني تجارب رقمية سريعة، حديثة، وموثوقة. مبني بـ Next.js + Supabase + Vercel.",
-  keywords: ["مواقع ويب", "تصميم مواقع", "تطوير مواقع", "b202", "Next.js", "Supabase", "Vercel"],
+    "فريق B_20 لبناء المواقع والمنتجات الرقمية. نصمم ونبني تجارب رقمية سريعة، حديثة، وموثوقة. مبني بـ Next.js + Supabase + Vercel.",
+  keywords: ["مواقع ويب", "تصميم مواقع", "تطوير مواقع", "B_20", "Next.js", "Supabase", "Vercel"],
   openGraph: {
-    title: "b202 — Web Studio",
-    description: "فريق b202 لبناء المواقع والمنتجات الرقمية.",
+    title: "B_20 — Web Studio",
+    description: "فريق B_20 لبناء المواقع والمنتجات الرقمية.",
     type: "website",
     locale: "ar_SA",
   },
   twitter: {
     card: "summary_large_image",
-    title: "b202 — Web Studio",
-    description: "فريق b202 لبناء المواقع والمنتجات الرقمية.",
+    title: "B_20 — Web Studio",
+    description: "فريق B_20 لبناء المواقع والمنتجات الرقمية.",
   },
 };
 

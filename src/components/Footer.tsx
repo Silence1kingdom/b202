@@ -22,10 +22,10 @@ export default function Footer() {
               <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/20 bg-white text-sm font-extrabold text-ink">
                 b
               </span>
-              <span className="text-xl font-bold tracking-tight text-paper">b202</span>
+              <span className="text-xl font-bold tracking-tight text-paper">B_20</span>
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/45">
-              فريق b202 لبناء المواقع والمنتجات الرقمية. نحول أفكاركم إلى واقع رقمي سريع وجميل.
+              فريق B_20 لبناء المواقع والمنتجات الرقمية. نحول أفكاركم إلى واقع رقمي سريع وجميل.
             </p>
 
             <div className="mt-6 flex gap-3">
@@ -88,7 +88,7 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-col items-center justify-between gap-4 border-t border-white/[0.06] pt-8 md:flex-row">
-          <p className="text-xs text-white/40">© {new Date().getFullYear()} b202. مبني بـ Next.js + Supabase + Vercel.</p>
+          <p className="text-xs text-white/40">© {new Date().getFullYear()} B_20. مبني بـ Next.js + Supabase + Vercel.</p>
           <div className="flex items-center gap-2 text-xs text-white/40">
             <span className="pulse-dot !h-2 !w-2" />
             <span>جميع الأنظمة تعمل بشكل طبيعي</span>

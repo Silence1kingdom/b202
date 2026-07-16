@@ -5,9 +5,9 @@ import { getValues, getTeam, getStats } from "@/lib/queries";
 export const revalidate = 300;
 
 export const metadata: Metadata = {
-  title: "من نحن — b202",
+  title: "من نحن — B_20",
   description:
-    "تعرف على فريق b202: قصتنا، قيمنا، وفريق العمل اللي بيبني مواقع تعيش طويلاً.",
+    "تعرف على فريق B_20: قصتنا، قيمنا، وفريق العمل اللي بيبني مواقع تعيش طويلاً.",
 };
 
 export default async function AboutPage() {
