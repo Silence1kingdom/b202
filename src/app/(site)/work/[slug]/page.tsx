@@ -3,7 +3,13 @@ import { notFound } from "next/navigation";
 import Icon from "@/components/icons";
 import { getProjects, getProjectBySlug } from "@/lib/queries";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
+export const dynamicParams = true;
+
+export async function generateStaticParams() {
+  const projects = await getProjects();
+  return projects.map((p) => ({ slug: p.slug }));
+}
 
 export default async function ProjectDetail({
   params,
@@ -88,8 +94,9 @@ export default async function ProjectDetail({
                 <img
                   src={`https://api.microlink.io/?url=${encodeURIComponent(
                     project.live_url
-                  )}&screenshot=true&meta=false&embed=screenshot.url&waitUntil=networkidle2&viewport.width=1280&viewport.height=800`}
+                  )}&screenshot=true&meta=false&embed=screenshot.url&viewport.width=1280&viewport.height=800&waitUntil=domcontentloaded`}
                   alt={project.title}
+                  loading="lazy"
                   className="absolute inset-0 h-full w-full object-cover object-top"
                 />
               ) : (

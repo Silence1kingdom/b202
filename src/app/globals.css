@@ -262,6 +262,11 @@ body {
   animation: pageLoad 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
 
+@keyframes loadbar {
+  0% { transform: translateX(-120%); }
+  100% { transform: translateX(320%); }
+}
+
 /* ── Admin panel ── */
 .admin-link {
   display: block;

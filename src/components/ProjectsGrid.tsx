@@ -9,7 +9,7 @@ import type { Project } from "@/lib/data";
 function screenshotUrl(liveUrl: string) {
   return `https://api.microlink.io/?url=${encodeURIComponent(
     liveUrl
-  )}&screenshot=true&meta=false&embed=screenshot.url&waitUntil=networkidle2&viewport.width=1280&viewport.height=800`;
+  )}&screenshot=true&meta=false&embed=screenshot.url&viewport.width=1024&viewport.height=640&waitUntil=domcontentloaded`;
 }
 
 export default function ProjectsGrid({ projects }: { projects: Project[] }) {
