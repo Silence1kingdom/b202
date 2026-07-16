@@ -2,6 +2,7 @@
 
 import { useInView } from "@/hooks/useScrollReveal";
 import { useCountUp } from "@/hooks/useCountUp";
+import Parallax from "@/components/Parallax";
 import type { Stat } from "@/lib/data";
 
 function StatCounter({ target, suffix }: { target: number; suffix: string }) {
@@ -19,11 +20,13 @@ export default function Hero({ stats }: { stats: Stat[] }) {
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden">
       <div className="absolute inset-0 dot-grid opacity-60" />
-      <div className="absolute -top-40 right-0 h-[420px] w-[420px] rounded-full bg-white/[0.04] blur-[120px]" />
-      <div className="absolute -bottom-40 left-0 h-[420px] w-[420px] rounded-full bg-white/[0.03] blur-[120px]" />
+
+      {/* Parallax glow orbs for depth */}
+      <Parallax speed={140} className="pointer-events-none absolute -top-40 right-0 h-[420px] w-[420px] rounded-full bg-white/[0.05] blur-[120px]" />
+      <Parallax speed={-120} className="pointer-events-none absolute -bottom-40 left-0 h-[420px] w-[420px] rounded-full bg-white/[0.04] blur-[120px]" />
 
       <div className="container-x relative pt-28 pb-20 md:pt-32">
-        <div className="max-w-4xl">
+        <Parallax speed={50} fade className="max-w-4xl">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5">
             <span className="pulse-dot !h-2 !w-2" />
             <span className="text-xs text-white/70">فريق b202 — متاح للعمل الآن</span>
@@ -65,9 +68,9 @@ export default function Hero({ stats }: { stats: Stat[] }) {
               </span>
             ))}
           </div>
-        </div>
+        </Parallax>
 
-        <div className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.04] md:mt-20 md:grid-cols-4">
+        <Parallax speed={30} className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.04] md:mt-20 md:grid-cols-4">
           {stats.map((s) => (
             <div key={s.label} className="bg-ink/60 p-6 text-center backdrop-blur-sm">
               <div className="text-3xl font-bold tabular-nums md:text-4xl">
@@ -76,8 +79,19 @@ export default function Hero({ stats }: { stats: Stat[] }) {
               <div className="mt-2 text-sm text-white/50">{s.label}</div>
             </div>
           ))}
-        </div>
+        </Parallax>
       </div>
+
+      {/* Scroll indicator */}
+      <a
+        href="#services"
+        className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-white/40 transition-colors hover:text-accent md:flex"
+        aria-label="انتقل للأسفل"
+      >
+        <span className="flex h-9 w-5 justify-center rounded-full border border-white/20 p-1">
+          <span className="scroll-wheel" />
+        </span>
+      </a>
     </section>
   );
 }

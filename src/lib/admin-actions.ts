@@ -3,14 +3,11 @@
 import { redirect } from "next/navigation";
 import { createSupabaseServerClient } from "./supabase/server";
 import { getEntity } from "./entities";
+import { isAuthed } from "./auth";
 
 async function requireAdmin() {
-  const supabase = createSupabaseServerClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) redirect("/admin/login");
-  return supabase;
+  if (!(await isAuthed())) redirect("/admin/login");
+  return createSupabaseServerClient();
 }
 
 export async function adminList(slug: string): Promise<any[]> {

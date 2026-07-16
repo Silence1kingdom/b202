@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import AboutContent from "@/components/AboutContent";
+import { getValues, getTeam, getStats } from "@/lib/queries";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "من نحن — b202",
@@ -7,10 +10,15 @@ export const metadata: Metadata = {
     "تعرف على فريق b202: قصتنا، قيمنا، وفريق العمل اللي بيبني مواقع تعيش طويلاً.",
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const [values, team, stats] = await Promise.all([
+    getValues(),
+    getTeam(),
+    getStats(),
+  ]);
   return (
     <main className="page-enter pt-16 md:pt-20">
-      <AboutContent />
+      <AboutContent values={values} team={team} stats={stats} />
     </main>
   );
 }

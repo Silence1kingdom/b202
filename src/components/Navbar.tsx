@@ -39,6 +39,7 @@ export default function Navbar() {
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
+    window.dispatchEvent(new CustomEvent(mobileOpen ? "lenis:stop" : "lenis:start"));
     return () => {
       document.body.style.overflow = "";
     };

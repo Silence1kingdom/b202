@@ -2,10 +2,18 @@
 
 import Link from "next/link";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { values, team, stats } from "@/lib/data";
+import type { Value, Member, Stat } from "@/lib/data";
 import Icon from "@/components/icons";
 
-export default function AboutContent() {
+export default function AboutContent({
+  values,
+  team,
+  stats,
+}: {
+  values: Value[];
+  team: Member[];
+  stats: Stat[];
+}) {
   const story = useScrollReveal();
   const valHook = useScrollReveal({ staggerMs: 80 });
   const teamHook = useScrollReveal({ staggerMs: 80 });
@@ -52,7 +60,7 @@ export default function AboutContent() {
                   <Icon name={v.icon} className="h-6 w-6" />
                 </div>
                 <h3 className="mt-5 text-lg font-bold">{v.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/55">{v.desc}</p>
+                <p className="mt-2 text-sm leading-relaxed text-white/55">{v.description}</p>
               </div>
             ))}
           </div>

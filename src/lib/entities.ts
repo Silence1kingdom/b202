@@ -40,7 +40,7 @@ export const entities: EntityDef[] = [
       { name: "slug", label: "الرابط (slug)", type: "text", required: true, placeholder: "nova-store" },
       { name: "category", label: "التصنيف", type: "text", placeholder: "متجر إلكتروني" },
       { name: "year", label: "السنة", type: "text", placeholder: "2025" },
-      { name: "desc", label: "الوصف", type: "textarea" },
+      { name: "description", label: "الوصف", type: "textarea" },
       { name: "tags", label: "التقنيات (مفصولة بفاصلة)", type: "tags", placeholder: "Next.js, Stripe" },
       { name: "tone", label: "تدرج اللون", type: "text", placeholder: "from-zinc-600 to-zinc-900" },
       { name: "live_url", label: "رابط المشروع", type: "text", placeholder: "https://..." },
@@ -56,7 +56,7 @@ export const entities: EntityDef[] = [
     orderBy: "sort_order",
     fields: [
       { name: "title", label: "العنوان", type: "text", required: true },
-      { name: "desc", label: "الوصف", type: "textarea" },
+      { name: "description", label: "الوصف", type: "textarea" },
       { name: "icon", label: "الأيقونة", type: "text", placeholder: "bolt" },
       { name: "sort_order", label: "الترتيب", type: "number" },
     ],
@@ -89,7 +89,7 @@ export const entities: EntityDef[] = [
     fields: [
       { name: "step", label: "الرقم", type: "text", placeholder: "01" },
       { name: "title", label: "العنوان", type: "text", required: true },
-      { name: "desc", label: "الوصف", type: "textarea" },
+      { name: "description", label: "الوصف", type: "textarea" },
       { name: "icon", label: "الأيقونة", type: "text", placeholder: "idea" },
       { name: "sort_order", label: "الترتيب", type: "number" },
     ],
@@ -117,7 +117,7 @@ export const entities: EntityDef[] = [
     orderBy: "sort_order",
     fields: [
       { name: "title", label: "العنوان", type: "text", required: true },
-      { name: "desc", label: "الوصف", type: "textarea" },
+      { name: "description", label: "الوصف", type: "textarea" },
       { name: "icon", label: "الأيقونة", type: "text", placeholder: "check" },
       { name: "sort_order", label: "الترتيب", type: "number" },
     ],

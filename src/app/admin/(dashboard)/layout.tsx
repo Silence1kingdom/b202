@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { logout } from "@/lib/auth-actions";
+import { isAuthed } from "@/lib/auth";
 import { entities } from "@/lib/entities";
 
 export default async function DashboardLayout({
@@ -9,11 +9,7 @@ export default async function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const supabase = createSupabaseServerClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) redirect("/admin/login");
+  if (!(await isAuthed())) redirect("/admin/login");
 
   return (
     <div className="min-h-screen bg-ink text-paper">

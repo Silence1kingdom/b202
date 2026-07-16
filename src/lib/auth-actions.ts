@@ -1,43 +1,34 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { createSupabaseServerClient } from "./supabase/server";
+import { cookies } from "next/headers";
+import { ADMIN_COOKIE, adminEmail, adminPassword, sessionToken } from "./session";
 
-function adminEmail(): string {
-  return (
-    process.env.ADMIN_EMAIL || process.env.NEXT_PUBLIC_ADMIN_EMAIL || ""
-  );
-}
-
-export async function login(formData: FormData): Promise<{ error?: string }> {
+export async function login(
+  formData: FormData
+): Promise<{ error?: string }> {
   const email = String(formData.get("email") || "").trim();
   const password = String(formData.get("password") || "");
+
   if (!email || !password) return { error: "ادخل الإيميل وكلمة السر." };
 
-  const supabase = createSupabaseServerClient();
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
-  if (error) return { error: error.message };
+  if (email !== adminEmail() || password !== adminPassword()) {
+    return { error: "الإيميل أو كلمة السر غلط." };
+  }
+
+  const token = await sessionToken();
+  cookies().set(ADMIN_COOKIE, token, {
+    httpOnly: true,
+    sameSite: "lax",
+    secure: process.env.NODE_ENV === "production",
+    path: "/",
+    maxAge: 60 * 60 * 24 * 7,
+  });
 
   redirect("/admin");
 }
 
-export async function signup(formData: FormData): Promise<{ error?: string; ok?: boolean; message?: string }> {
-  const email = String(formData.get("email") || "").trim();
-  const password = String(formData.get("password") || "");
-
-  if (email !== adminEmail()) {
-    return { error: "التسجيل متاح للأدمن فقط." };
-  }
-
-  const supabase = createSupabaseServerClient();
-  const { data, error } = await supabase.auth.signUp({ email, password });
-  if (error) return { error: error.message };
-  if (data.session) redirect("/admin");
-  return { ok: true, message: "تم إنشاء الحساب. فعّل الإيميل من الرسالة اللي وصلتك وبعدين سجّل دخول." };
-}
-
 export async function logout(): Promise<void> {
-  const supabase = createSupabaseServerClient();
-  await supabase.auth.signOut();
+  cookies().delete(ADMIN_COOKIE);
   redirect("/admin/login");
 }

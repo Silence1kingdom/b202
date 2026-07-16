@@ -2,8 +2,9 @@
 
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import ProjectsGrid from "@/components/ProjectsGrid";
+import type { Project } from "@/lib/data";
 
-export default function Work() {
+export default function Work({ projects }: { projects: Project[] }) {
   const { setChildRef } = useScrollReveal();
 
   return (
@@ -22,7 +23,7 @@ export default function Work() {
           </p>
         </div>
 
-        <ProjectsGrid />
+        <ProjectsGrid projects={projects} />
       </div>
     </section>
   );

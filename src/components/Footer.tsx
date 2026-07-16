@@ -1,6 +1,7 @@
 "use client";
 
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import Link from "next/link";
 import Icon from "@/components/icons";
 
 const socials = [
@@ -50,11 +51,18 @@ export default function Footer() {
                 { href: "/about", label: "من نحن" },
                 { href: "/#process", label: "خطوات الشغل" },
                 { href: "/#contact", label: "تواصل معنا" },
-              ].map((l) => (
+                { href: "/admin/login", label: "تسجيل الدخول", admin: true },
+               ].map((l) => (
                 <li key={l.href}>
-                  <a href={l.href} className="text-sm text-white/45 transition-colors duration-300 hover:text-accent">
-                    {l.label}
-                  </a>
+                  {l.admin ? (
+                    <Link href={l.href} className="text-sm font-medium text-accent transition-opacity hover:opacity-80">
+                      {l.label}
+                    </Link>
+                  ) : (
+                    <a href={l.href} className="text-sm text-white/45 transition-colors duration-300 hover:text-accent">
+                      {l.label}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>

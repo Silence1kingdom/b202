@@ -1,14 +1,16 @@
 "use client";
 
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { testimonials } from "@/lib/data";
+import type { Testimonial } from "@/lib/data";
 import Icon from "@/components/icons";
+import Parallax from "@/components/Parallax";
 
-export default function Testimonials() {
+export default function Testimonials({ testimonials }: { testimonials: Testimonial[] }) {
   const { ref, setChildRef } = useScrollReveal({ staggerMs: 100 });
 
   return (
-    <section id="testimonials" className="relative border-t border-white/[0.06] py-24 md:py-32">
+    <section id="testimonials" className="relative overflow-hidden border-t border-white/[0.06] py-24 md:py-32">
+      <Parallax speed={-80} className="pointer-events-none absolute -bottom-24 -left-16 h-72 w-72 rounded-full bg-white/[0.04] blur-[120px]" />
       <div className="container-x">
         <div ref={setChildRef(0)} className="reveal mb-14 max-w-2xl">
           <div className="flex items-center gap-3">

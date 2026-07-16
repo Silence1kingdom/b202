@@ -1,14 +1,16 @@
 "use client";
 
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { processSteps } from "@/lib/data";
+import type { ProcessStep } from "@/lib/data";
 import Icon from "@/components/icons";
+import Parallax from "@/components/Parallax";
 
-export default function Process() {
+export default function Process({ processSteps }: { processSteps: ProcessStep[] }) {
   const { ref, setChildRef } = useScrollReveal({ staggerMs: 120 });
 
   return (
-    <section id="process" className="relative border-t border-white/[0.06] py-24 md:py-32">
+    <section id="process" className="relative overflow-hidden border-t border-white/[0.06] py-24 md:py-32">
+      <Parallax speed={90} className="pointer-events-none absolute -top-20 -right-20 h-72 w-72 rounded-full bg-white/[0.04] blur-[120px]" />
       <div className="container-x">
         <div ref={setChildRef(0)} className="reveal mb-14 max-w-2xl">
           <div className="flex items-center gap-3">
@@ -36,7 +38,7 @@ export default function Process() {
                   <span className="text-sm font-medium tabular-nums text-accent">{ps.step}</span>
                 </div>
                 <h3 className="mt-5 text-xl font-bold text-accent">{ps.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/55">{ps.desc}</p>
+                <p className="mt-2 text-sm leading-relaxed text-white/55">{ps.description}</p>
               </div>
             </div>
           ))}

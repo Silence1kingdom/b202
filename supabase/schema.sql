@@ -11,7 +11,7 @@ create table if not exists public.projects (
   title       text not null,
   category    text not null default '',
   year        text not null default '',
-  desc        text not null default '',
+  description text not null default '',
   tags        text[] not null default '{}',
   tone        text not null default 'from-zinc-600 to-zinc-900',
   live_url    text not null default '',
@@ -23,7 +23,7 @@ create table if not exists public.projects (
 create table if not exists public.services (
   id          uuid primary key default gen_random_uuid(),
   title       text not null,
-  desc        text not null default '',
+  description text not null default '',
   icon        text not null default '',
   sort_order  int not null default 0,
   created_at  timestamptz not null default now()
@@ -45,7 +45,7 @@ create table if not exists public.process_steps (
   step        text not null default '',
   icon        text not null default '',
   title       text not null,
-  desc        text not null default '',
+  description text not null default '',
   sort_order  int not null default 0,
   created_at  timestamptz not null default now()
 );
@@ -63,7 +63,7 @@ create table if not exists public.values (
   id          uuid primary key default gen_random_uuid(),
   icon        text not null default '',
   title       text not null,
-  desc        text not null default '',
+  description text not null default '',
   sort_order  int not null default 0,
   created_at  timestamptz not null default now()
 );

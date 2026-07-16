@@ -34,7 +34,7 @@ export default function Services({ services }: { services: Service[] }) {
                 <Icon name={s.icon} className="h-6 w-6" />
               </div>
               <h3 className="mt-5 text-xl font-bold text-accent">{s.title}</h3>
-              <p className="mt-2.5 text-sm leading-relaxed text-white/55">{s.desc}</p>
+              <p className="mt-2.5 text-sm leading-relaxed text-white/55">{s.description}</p>
             </div>
           ))}
         </div>

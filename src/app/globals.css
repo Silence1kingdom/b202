@@ -16,7 +16,25 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 88px;
+  scroll-padding-top: 80px;
+}
+
+/* ── Lenis Smooth Scroll ── */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
 }
 
 body {
@@ -51,8 +69,8 @@ body {
 .scroll-progress-bar {
   height: 100%;
   width: 0%;
-  background: var(--accent);
-  transition: width 0.1s linear;
+  background: linear-gradient(90deg, var(--accent), #fbbf24);
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.6);
 }
 
 /* ── Layout helpers ── */
@@ -219,6 +237,20 @@ body {
 @keyframes pulseRing {
   0% { transform: scale(0.8); opacity: 1; }
   100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* ── Scroll indicator wheel ── */
+.scroll-wheel {
+  width: 3px;
+  height: 6px;
+  border-radius: 999px;
+  background: currentColor;
+  animation: scrollWheel 1.6s ease-in-out infinite;
+}
+@keyframes scrollWheel {
+  0% { transform: translateY(0); opacity: 1; }
+  70% { transform: translateY(10px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 0; }
 }
 
 /* ── Page load fade ── */

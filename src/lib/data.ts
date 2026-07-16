@@ -3,7 +3,7 @@ export type Project = {
   title: string;
   slug: string;
   category: string;
-  desc: string;
+  description: string;
   tags: string[];
   year: string;
   tone: string;
@@ -15,7 +15,7 @@ export type Service = {
   id?: string;
   icon: string;
   title: string;
-  desc: string;
+  description: string;
 };
 
 export type Testimonial = {
@@ -32,7 +32,7 @@ export type ProcessStep = {
   step: string;
   icon: string;
   title: string;
-  desc: string;
+  description: string;
 };
 
 export type Stat = {
@@ -46,7 +46,7 @@ export type Value = {
   id?: string;
   icon: string;
   title: string;
-  desc: string;
+  description: string;
 };
 
 export type Member = {
