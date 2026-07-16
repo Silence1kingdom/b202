@@ -9,12 +9,16 @@ import type {
   Member,
 } from "./data";
 
-async function getAll<T>(table: string, order: string): Promise<T[]> {
+async function getAll<T>(
+  table: string,
+  order: string,
+  ascending = true
+): Promise<T[]> {
   const supabase = createSupabaseServerClient();
   const { data, error } = await supabase
     .from(table)
     .select("*")
-    .order(order, { ascending: false });
+    .order(order, { ascending });
   if (error) {
     console.error(`[supabase] ${table}:`, error.message);
     return [];
@@ -23,25 +27,25 @@ async function getAll<T>(table: string, order: string): Promise<T[]> {
 }
 
 export async function getProjects(): Promise<Project[]> {
-  return getAll<Project>("projects", "created_at");
+  return getAll<Project>("projects", "created_at", false);
 }
 export async function getServices(): Promise<Service[]> {
-  return getAll<Service>("services", "sort_order");
+  return getAll<Service>("services", "sort_order", true);
 }
 export async function getTestimonials(): Promise<Testimonial[]> {
-  return getAll<Testimonial>("testimonials", "sort_order");
+  return getAll<Testimonial>("testimonials", "sort_order", true);
 }
 export async function getProcessSteps(): Promise<ProcessStep[]> {
-  return getAll<ProcessStep>("process_steps", "sort_order");
+  return getAll<ProcessStep>("process_steps", "sort_order", true);
 }
 export async function getStats(): Promise<Stat[]> {
-  return getAll<Stat>("stats", "sort_order");
+  return getAll<Stat>("stats", "sort_order", true);
 }
 export async function getValues(): Promise<Value[]> {
-  return getAll<Value>("values", "sort_order");
+  return getAll<Value>("values", "sort_order", true);
 }
 export async function getTeam(): Promise<Member[]> {
-  return getAll<Member>("team", "sort_order");
+  return getAll<Member>("team", "sort_order", true);
 }
 
 export async function getProjectBySlug(slug: string): Promise<Project | null> {

@@ -17,10 +17,11 @@ export async function adminList(slug: string): Promise<any[]> {
   const entity = getEntity(slug);
   if (!entity) return [];
   const order = entity.orderBy || "created_at";
+  const ascending = order === "sort_order";
   const { data, error } = await supabase
     .from(entity.table)
     .select("*")
-    .order(order, { ascending: false });
+    .order(order, { ascending });
   if (error) return [];
   return data as any[];
 }
