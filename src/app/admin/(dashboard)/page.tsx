@@ -8,19 +8,29 @@ export default async function Dashboard() {
   );
 
   return (
-    <div className="p-8">
-      <h1 className="text-2xl font-bold">لوحة التحكم</h1>
-      <p className="mt-1 text-sm text-white/50">إدارة محتوى الموقع من مكان واحد.</p>
+    <div>
+      <div className="mb-8">
+        <h1 className="text-3xl font-extrabold tracking-tightest">لوحة التحكم</h1>
+        <p className="mt-1.5 text-sm text-white/50">
+          إدارة محتوى موقع b202 من مكان واحد.
+        </p>
+      </div>
 
-      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {counts.map(({ e, count }) => (
           <Link
             key={e.slug}
             href={`/admin/${e.slug}`}
-            className="admin-card p-6 transition-colors hover:border-accent/40"
+            className="admin-card group p-6 transition-all duration-300 hover:border-accent/40"
           >
-            <div className="text-3xl font-extrabold text-accent">{count}</div>
-            <div className="mt-2 text-white/70">{e.label}</div>
+            <div className="flex items-start justify-between">
+              <div className="text-4xl font-extrabold text-accent">{count}</div>
+              <span className="text-white/30 transition-colors group-hover:text-accent">
+                ←
+              </span>
+            </div>
+            <div className="mt-3 text-sm font-medium text-white/70">{e.label}</div>
+            <div className="mt-0.5 text-xs text-white/35">إدارة {e.label}</div>
           </Link>
         ))}
       </div>

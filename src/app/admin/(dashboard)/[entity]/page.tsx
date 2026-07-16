@@ -2,6 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getEntity } from "@/lib/entities";
 import { adminList, adminDelete } from "@/lib/admin-actions";
+import EntityRowActions from "@/components/admin/EntityRowActions";
+import AddEntityButton from "@/components/admin/AddEntityButton";
 
 export default async function EntityList({
   params,
@@ -14,18 +16,19 @@ export default async function EntityList({
   const rows = await adminList(params.entity);
 
   return (
-    <div className="p-8">
-      <div className="flex items-center justify-between">
+    <div>
+      <div className="mb-7 flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold">{entity.label}</h1>
+          <Link href="/admin" className="text-xs text-white/40 transition-colors hover:text-accent">
+            ← لوحة التحكم
+          </Link>
+          <h1 className="mt-1.5 text-3xl font-extrabold tracking-tightest">{entity.label}</h1>
           <p className="mt-1 text-sm text-white/50">{rows.length} عنصر</p>
         </div>
-        <Link href={`/admin/${entity.slug}/new`} className="btn-primary px-5 py-2.5">
-          + إضافة {entity.singular}
-        </Link>
+        <AddEntityButton slug={entity.slug} singular={entity.singular} />
       </div>
 
-      <div className="admin-card mt-6 overflow-hidden">
+      <div className="admin-card overflow-hidden">
         <table className="w-full">
           <thead>
             <tr>
@@ -43,25 +46,17 @@ export default async function EntityList({
               </tr>
             )}
             {rows.map((row: any) => (
-              <tr key={row.id}>
-                <td className="admin-td">{row[entity.titleField]}</td>
+              <tr key={row.id} className="transition-colors hover:bg-white/[0.02]">
+                <td className="admin-td font-medium">{row[entity.titleField]}</td>
                 {entity.subtitleField && (
                   <td className="admin-td text-white/50">{row[entity.subtitleField]}</td>
                 )}
                 <td className="admin-td text-left">
-                  <div className="flex justify-end gap-3">
-                    <Link
-                      href={`/admin/${entity.slug}/${row.id}`}
-                      className="text-sm text-accent hover:opacity-80"
-                    >
-                      تعديل
-                    </Link>
-                    <form action={adminDelete.bind(null, entity.slug, row.id)}>
-                      <button className="text-sm text-white/50 hover:text-accent">
-                        حذف
-                      </button>
-                    </form>
-                  </div>
+                  <EntityRowActions
+                    slug={entity.slug}
+                    id={String(row.id)}
+                    onDelete={adminDelete}
+                  />
                 </td>
               </tr>
             ))}

@@ -4,11 +4,14 @@
 -- Safe to run once; re-running adds duplicate rows.
 -- ============================================================
 
-insert into public.projects (slug, title, category, year, description, tags, tone) values
-('nova-store', 'Nova Store', 'متجر إلكتروني', '2025', 'منصة تجارة إلكترونية كاملة مع دفع آمن ولوحة تحكم وتحليلات مبيعات.', '{Next.js,Stripe,Supabase}', 'from-zinc-600 to-zinc-900'),
-('folio-ai', 'Folio AI', 'منتج SaaS', '2025', 'أداة توليد محتوى بالذكاء الاصطناعي مع لوحة تحليلات وتتبع استخدام.', '{React,OpenAI,Tailwind}', 'from-zinc-500 to-zinc-800'),
-('zohour-restaurant', 'مطعم زهور', 'موقع تعريفي', '2024', 'موقع عربي أنيق لعرض القائمة والحجوزات مع خريطة تفاعلية.', '{Next.js,i18n,CMS}', 'from-zinc-700 to-zinc-900'),
-('eduplus', 'EduPlus', 'منصة تعليمية', '2024', 'منصة دورات تفاعلية مع فيديو واختبارات وشهادات إتمام.', '{Next.js,Supabase,Stripe}', 'from-zinc-600 to-zinc-900');
+insert into public.projects (slug, title, category, year, description, tags, tone, live_url, featured) values
+('dr-black-store', 'Dr Black Store', 'متجر ألعاب', '2026', 'متجر رسمي لشحن جواهر فري فاير بالـ ID مع تسليم فوري، صفحة كلان وإنجازات، ودعم واتساب مباشر على مدار الساعة.', '{Next.js,Supabase,Tailwind}', 'from-zinc-800 to-black', 'https://dr-black.vercel.app', true),
+('masar-academy', 'أكاديمية مسار', 'منصة تعليمية', '2026', 'منصة تعليمية عربية متكاملة لكورسات البرمجة والتصميم والذكاء الاصطناعي، مع مشاريع تطبيقية وشهادات معتمدة ومجتمع تفاعلي.', '{Next.js,Supabase,Stripe}', 'from-zinc-600 to-zinc-900', 'https://masramy.vercel.app', true),
+('monster-store', 'Monster Store', 'متجر إلكتروني', '2026', 'متجر أحذية رياضية بستايل جريء مع تصفية بالفئات، سلة ومقارنة منتجات، عروض وخصومات، وتجربة تسوق سريعة لكل المحافظات.', '{Next.js,Tailwind,E-commerce}', 'from-zinc-700 to-zinc-950', 'https://monster-rho-seven.vercel.app', true),
+('nova-store', 'Nova Store', 'متجر إلكتروني', '2025', 'منصة تجارة إلكترونية كاملة مع دفع آمن ولوحة تحكم وتحليلات مبيعات.', '{Next.js,Stripe,Supabase}', 'from-zinc-600 to-zinc-900', null, false),
+('folio-ai', 'Folio AI', 'منتج SaaS', '2025', 'أداة توليد محتوى بالذكاء الاصطناعي مع لوحة تحليلات وتتبع استخدام.', '{React,OpenAI,Tailwind}', 'from-zinc-500 to-zinc-800', null, false),
+('zohour-restaurant', 'مطعم زهور', 'موقع تعريفي', '2024', 'موقع عربي أنيق لعرض القائمة والحجوزات مع خريطة تفاعلية.', '{Next.js,i18n,CMS}', 'from-zinc-700 to-zinc-900', null, false),
+('eduplus', 'EduPlus', 'منصة تعليمية', '2024', 'منصة دورات تفاعلية مع فيديو واختبارات وشهادات إتمام.', '{Next.js,Supabase,Stripe}', 'from-zinc-600 to-zinc-900', null, false);
 
 insert into public.services (title, description, icon, sort_order) values
 ('مواقع سريعة', 'مواقع محسنة للأداء بدرجة 100 على Lighthouse. السرعة تعني مبيعات أكثر.', 'bolt', 1),

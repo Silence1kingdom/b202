@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getEntity } from "@/lib/entities";
 import { adminSave, adminGet } from "@/lib/admin-actions";
@@ -17,8 +18,16 @@ export default async function EntityEdit({
   const save = adminSave.bind(null, entity.slug);
 
   return (
-    <div className="p-8">
-      <h1 className="mb-6 text-2xl font-bold">تعديل {entity.singular}</h1>
+    <div className="mx-auto max-w-2xl">
+      <Link
+        href={`/admin/${entity.slug}`}
+        className="text-xs text-white/40 transition-colors hover:text-accent"
+      >
+        ← {entity.label}
+      </Link>
+      <h1 className="mb-6 mt-1.5 text-3xl font-extrabold tracking-tightest">
+        تعديل {entity.singular}
+      </h1>
       <EntityForm entity={entity} initial={row} action={save} />
     </div>
   );

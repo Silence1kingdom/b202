@@ -1,13 +1,15 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 import { createSupabaseServerClient } from "./supabase/server";
+import { createSupabaseAdminClient } from "./supabase/admin";
 import { getEntity } from "./entities";
 import { isAuthed } from "./auth";
 
 async function requireAdmin() {
   if (!(await isAuthed())) redirect("/admin/login");
-  return createSupabaseServerClient();
+  return createSupabaseAdminClient() || createSupabaseServerClient();
 }
 
 export async function adminList(slug: string): Promise<any[]> {
@@ -74,13 +76,24 @@ export async function adminSave(
     error = (await supabase.from(entity.table).insert(row)).error;
   }
   if (error) return { error: error.message };
+  revalidatePath(`/admin/${slug}`);
+  revalidatePath("/admin");
+  revalidatePath("/");
+  revalidatePath("/work");
   redirect(`/admin/${slug}`);
 }
 
-export async function adminDelete(slug: string, id: string): Promise<void> {
+export async function adminDelete(slug: string, id: string): Promise<{ error?: string }> {
   const supabase = await requireAdmin();
   const entity = getEntity(slug);
-  if (!entity) return;
-  await supabase.from(entity.table).delete().eq("id", id);
-  redirect(`/admin/${slug}`);
+  if (!entity) return { error: "كيان غير معروف" };
+
+  const { error } = await supabase.from(entity.table).delete().eq("id", id);
+  if (error) return { error: error.message };
+
+  revalidatePath(`/admin/${slug}`);
+  revalidatePath("/admin");
+  revalidatePath("/");
+  revalidatePath("/work");
+  return {};
 }

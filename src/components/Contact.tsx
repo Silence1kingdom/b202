@@ -24,7 +24,18 @@ const budgetOptions = [
   { value: "< 5k", label: "أقل من 5,000", hint: "موقع تعريفي / هبوط" },
   { value: "5k-15k", label: "5,000 - 15,000", hint: "متجر / SaaS" },
   { value: "15k+", label: "أكثر من 15,000", hint: "مشروع متكامل" },
+  { value: "custom", label: "قيمة مخصصة", hint: "حدد ميزانيتك" },
 ];
+
+const BUDGET_LABELS: Record<string, string> = {
+  "< 5k": "أقل من 5,000 جنيه",
+  "5k-15k": "5,000 - 15,000 جنيه",
+  "15k+": "أكثر من 15,000 جنيه",
+};
+
+function escapeWhatsapp(value: string) {
+  return value.replace(/[*_~`]/g, (m) => `\u200b${m}`).trim();
+}
 
 function buildWhatsappMessage(form: {
   name: string;
@@ -32,20 +43,32 @@ function buildWhatsappMessage(form: {
   budget: string;
   message: string;
 }) {
-  return `مرحباً b202 👋
-عندي طلب جديد:
+  const now = new Date();
+  const date = now.toLocaleDateString("en-GB");
+  const time = now.toLocaleTimeString("ar-EG", { hour: "2-digit", minute: "2-digit" });
+  const name = escapeWhatsapp(form.name);
+  const budget = BUDGET_LABELS[form.budget]
+    || (form.budget ? `${escapeWhatsapp(form.budget)} جنيه` : "لم تحدد");
 
-*الاسم:* ${form.name}
-*البريد:* ${form.email}
-*الميزانية:* ${form.budget || "لم يحدد"}
-*الرسالة:*
-${form.message}
+  return `━━━ b202 ━━━
+مرحباً ${name} 👋
+عندك طلب جديد، وده تفاصيله:
 
-محتاج أبدأ مشروعي معاكم.`;
+👤 الاسم: ${name}
+📧 البريد: ${escapeWhatsapp(form.email)}
+💰 الميزانية: ${budget}
+📝 الرسالة:
+${escapeWhatsapp(form.message)}
+
+📅 التاريخ: ${date}
+⏰ الوقت: ${time}
+
+متحمسين نبدأ معاكم 🚀 — نستنى ردك.`;
 }
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", budget: "", message: "" });
+  const [customBudget, setCustomBudget] = useState(false);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [error, setError] = useState("");
   const { ref, setChildRef } = useScrollReveal({ staggerMs: 100 });
@@ -61,11 +84,22 @@ export default function Contact() {
     setStatus("loading");
     setError("");
 
-    const supabase = getSupabase();
-    if (supabase) {
-      await supabase.from("leads").insert([
-        { name: form.name, email: form.email, budget: form.budget, message: form.message },
-      ]);
+    try {
+      const supabase = getSupabase();
+      if (supabase) {
+        const { error: dbError } = await supabase.from("leads").insert([
+          {
+            name: form.name.trim(),
+            email: form.email.trim(),
+            budget: form.budget.trim(),
+            message: form.message.trim(),
+            read: false,
+          },
+        ]);
+        if (dbError) console.error("[leads] insert:", dbError.message);
+      }
+    } catch (err) {
+      console.error("[leads] insert failed:", err);
     }
 
     const text = encodeURIComponent(buildWhatsappMessage(form));
@@ -73,6 +107,7 @@ export default function Contact() {
 
     setStatus("success");
     setForm({ name: "", email: "", budget: "", message: "" });
+    setCustomBudget(false);
   };
 
   const isFilled = form.name && form.email && form.message;
@@ -199,23 +234,49 @@ export default function Contact() {
                     {/* Budget chips */}
                     <div>
                       <span className="mb-2 block text-xs text-white/45">الميزانية المتوقعة</span>
-                      <div className="grid grid-cols-3 gap-2">
-                        {budgetOptions.map((b) => (
-                          <button
-                            type="button"
-                            key={b.value}
-                            onClick={() => setForm({ ...form, budget: b.value })}
-                            className={`rounded-xl border px-3 py-2.5 text-center text-sm transition-all duration-300 ${
-                              form.budget === b.value
-                                ? "border-accent/50 bg-accent/15 text-accent"
-                                : "border-white/10 text-white/55 hover:border-white/25"
-                            }`}
-                          >
-                            <div className="font-semibold">{b.label}</div>
-                            <div className="mt-0.5 text-[0.65rem] text-white/40">{b.hint}</div>
-                          </button>
-                        ))}
+                      <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+                        {budgetOptions.map((b) => {
+                          const isCustom = b.value === "custom";
+                          const active = isCustom ? customBudget : !customBudget && form.budget === b.value;
+                          return (
+                            <button
+                              type="button"
+                              key={b.value}
+                              onClick={() => {
+                                if (isCustom) {
+                                  setCustomBudget(true);
+                                  setForm({ ...form, budget: "" });
+                                } else {
+                                  setCustomBudget(false);
+                                  setForm({ ...form, budget: b.value });
+                                }
+                              }}
+                              className={`rounded-xl border px-3 py-2.5 text-center text-sm transition-all duration-300 ${
+                                active
+                                  ? "border-accent/50 bg-accent/15 text-accent"
+                                  : "border-white/10 text-white/55 hover:border-white/25"
+                              }`}
+                            >
+                              <div className="font-semibold">{b.label}</div>
+                              <div className="mt-0.5 text-[0.65rem] text-white/40">{b.hint}</div>
+                            </button>
+                          );
+                        })}
                       </div>
+
+                      {customBudget && (
+                        <div className="field mt-3">
+                          <input
+                            name="budget"
+                            inputMode="numeric"
+                            value={form.budget}
+                            onChange={handleChange}
+                            placeholder=" "
+                            autoFocus
+                          />
+                          <label>الميزانية بالجنيه (مثال: 25,000)</label>
+                        </div>
+                      )}
                     </div>
 
                     <div className="field">

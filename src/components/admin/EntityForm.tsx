@@ -1,5 +1,7 @@
 "use client";
 
+import { useTransition } from "react";
+import { useRouter } from "next/navigation";
 import type { EntityDef } from "@/lib/entities";
 
 function initialValue(initial: Record<string, any>, name: string): string {
@@ -19,8 +21,15 @@ export default function EntityForm({
   initial: Record<string, any>;
   action: (formData: FormData) => void;
 }) {
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+
+  const handleSubmit = (formData: FormData) => {
+    startTransition(() => action(formData));
+  };
+
   return (
-    <form action={action} className="admin-card space-y-5 p-6">
+    <form action={handleSubmit} className="admin-card space-y-5 p-6">
       <input type="hidden" name="id" value={initial.id || ""} />
 
       {entity.fields.map((f) => (
@@ -64,9 +73,27 @@ export default function EntityForm({
         </div>
       ))}
 
-      <div className="flex gap-3 pt-2">
-        <button type="submit" className="btn-primary px-6 py-3">
-          حفظ
+      <div className="flex items-center gap-3 pt-2">
+        <button type="submit" disabled={isPending} className="btn-primary px-6 py-3 disabled:opacity-70">
+          {isPending ? (
+            <span className="flex items-center gap-2">
+              <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+              </svg>
+              جاري الحفظ...
+            </span>
+          ) : (
+            "حفظ"
+          )}
+        </button>
+        <button
+          type="button"
+          onClick={() => router.push(`/admin/${entity.slug}`)}
+          disabled={isPending}
+          className="btn-ghost px-6 py-3 disabled:opacity-70"
+        >
+          إلغاء
         </button>
       </div>
     </form>
