@@ -9,13 +9,27 @@ export function adminPassword(): string {
   return process.env.ADMIN_PASSWORD || "b202admin";
 }
 
+// HMAC key. In production set ADMIN_SESSION_SECRET to a random secret.
+// A deterministic fallback keeps local/dev working but is NOT secure — override it.
+function sessionSecret(): string {
+  return process.env.ADMIN_SESSION_SECRET || `b202::${adminEmail()}::${adminPassword()}`;
+}
+
 export async function sessionToken(): Promise<string> {
-  const payload = `b202::${adminEmail()}::${adminPassword()}`;
-  const buf = await crypto.subtle.digest(
-    "SHA-256",
+  const payload = `b202::${adminEmail()}`;
+  const key = await crypto.subtle.importKey(
+    "raw",
+    new TextEncoder().encode(sessionSecret()),
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    ["sign"]
+  );
+  const sig = await crypto.subtle.sign(
+    "HMAC",
+    key,
     new TextEncoder().encode(payload)
   );
-  return Array.from(new Uint8Array(buf))
+  return Array.from(new Uint8Array(sig))
     .map((b) => b.toString(16).padStart(2, "0"))
     .join("");
 }
