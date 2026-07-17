@@ -37,6 +37,10 @@ function escapeWhatsapp(value: string) {
   return value.replace(/[*_~`]/g, (m) => `\u200b${m}`).trim();
 }
 
+function isValidEmail(value: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+}
+
 function buildWhatsappMessage(form: {
   name: string;
   email: string;
@@ -81,11 +85,25 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus("loading");
     setError("");
 
+    // Smart validation — only name + message are strictly required.
+    if (!form.name.trim() || !form.message.trim()) {
+      setError("من فضلك اكتب اسمك ورسالتك عشان نقدر نرد عليك.");
+      return;
+    }
+    if (form.email.trim() && !isValidEmail(form.email)) {
+      setError("البريد الإلكتروني مش صحيح — تأكد من الصيغة (مثال: you@email.com).");
+      return;
+    }
+
+    setStatus("loading");
+
     const text = encodeURIComponent(buildWhatsappMessage(form));
-    window.open(`${WHATSAPP_LINK}?text=${text}`, "_blank", "noopener,noreferrer");
+    const waUrl = `${WHATSAPP_LINK}?text=${text}`;
+    // Open WhatsApp within the user gesture. If blocked by a popup blocker,
+    // the success screen still shows a manual link.
+    const opened = window.open(waUrl, "_blank", "noopener,noreferrer");
 
     // Save the lead in the background — never block the UI on DB latency.
     (async () => {
@@ -114,6 +132,8 @@ export default function Contact() {
     setStatus("success");
     setForm({ name: "", email: "", budget: "", message: "" });
     setCustomBudget(false);
+    // keep waUrl for the fallback link
+    sessionStorage.setItem("wa_fallback", waUrl);
   };
 
   const isFilled = form.name && form.email && form.message;
@@ -208,23 +228,32 @@ export default function Contact() {
                   </span>
                 </div>
 
-                {status === "success" ? (
+                 {status === "success" ? (
                    <div className="flex flex-col items-center py-10 text-center" role="status" aria-live="polite">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-accent/15 text-accent">
-                      <Icon name="check" className="h-8 w-8" />
-                    </div>
-                    <h4 className="mt-5 text-xl font-bold text-paper">اتفتح لك واتساب ✅</h4>
-                    <p className="mt-2 max-w-xs text-sm text-white/50">
-                      الرسالة جاهزة — اضغط إرسال ونحنا نرد عليك في أقرب وقت.
-                    </p>
-                    <button
-                      onClick={() => setStatus("idle")}
-                      className="btn-ghost mt-6 px-6 py-2.5 text-sm"
-                    >
-                      ابعت طلب تاني
-                    </button>
-                  </div>
-                ) : (
+                     <div className="flex h-16 w-16 items-center justify-center rounded-full bg-accent/15 text-accent">
+                       <Icon name="check" className="h-8 w-8" />
+                     </div>
+                     <h4 className="mt-5 text-xl font-bold text-paper">اتفتح لك واتساب ✅</h4>
+                     <p className="mt-2 max-w-xs text-sm text-white/50">
+                       الرسالة جاهزة — اضغط إرسال ونحنا نرد عليك في أقرب وقت.
+                     </p>
+                     <a
+                       href={sessionStorage.getItem("wa_fallback") || WHATSAPP_LINK}
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       className="btn-primary mt-5 inline-flex items-center gap-2 px-6 py-3 text-sm"
+                     >
+                       <Icon name="whatsapp" className="h-5 w-5" />
+                       افتح واتساب يدويًا
+                     </a>
+                     <button
+                       onClick={() => setStatus("idle")}
+                       className="btn-ghost mt-3 px-6 py-2.5 text-sm"
+                     >
+                       ابعت طلب تاني
+                     </button>
+                   </div>
+                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="grid gap-5 md:grid-cols-2">
                        <div className="field">
@@ -293,6 +322,12 @@ export default function Contact() {
                         {isFilled && <span className="text-success">جاهز للإرسال 🚀</span>}
                       </div>
                     </div>
+
+                    {error && (
+                      <p className="rounded-xl border border-accent/30 bg-accent/10 px-4 py-3 text-sm text-accent" role="alert">
+                        {error}
+                      </p>
+                    )}
 
                     <button
                       type="submit"
