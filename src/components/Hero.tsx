@@ -3,6 +3,7 @@
 import { useInView } from "@/hooks/useScrollReveal";
 import { useCountUp } from "@/hooks/useCountUp";
 import Parallax from "@/components/Parallax";
+import { useState } from "react";
 import type { Stat } from "@/lib/data";
 
 function StatCounter({ target, suffix }: { target: number; suffix: string }) {
@@ -17,9 +18,21 @@ function StatCounter({ target, suffix }: { target: number; suffix: string }) {
 }
 
 export default function Hero({ stats }: { stats: Stat[] }) {
+  const [pos, setPos] = useState({ x: 50, y: 30 });
+
+  function onMove(e: React.MouseEvent<HTMLElement>) {
+    const r = e.currentTarget.getBoundingClientRect();
+    setPos({ x: ((e.clientX - r.left) / r.width) * 100, y: ((e.clientY - r.top) / r.height) * 100 });
+  }
+
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden">
-      <div className="absolute inset-0 dot-grid opacity-60" />
+    <section
+      onMouseMove={onMove}
+      className="glow-follow relative flex min-h-screen items-center overflow-hidden"
+      style={{ ["--mx" as string]: `${pos.x}%`, ["--my" as string]: `${pos.y}%` }}
+    >
+      <div className="absolute inset-0 dot-grid opacity-40" />
+      <div className="mesh-bg absolute inset-0 opacity-80" />
 
       {/* Parallax glow orbs for depth */}
       <Parallax speed={140} className="pointer-events-none absolute -top-40 right-0 h-[420px] w-[420px] rounded-full bg-white/[0.05] blur-[120px]" />

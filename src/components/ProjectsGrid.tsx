@@ -23,9 +23,9 @@ export default function ProjectsGrid({ projects }: { projects: Project[] }) {
           ref={setChildRef(i + 1)}
           className={`reveal ${i === 0 ? "md:col-span-2" : ""}`}
         >
-          <article className="card group overflow-hidden rounded-3xl">
+          <article className="card spotlight group relative overflow-hidden rounded-3xl">
             {/* Preview */}
-            <div className={`relative h-60 overflow-hidden bg-gradient-to-br md:h-72 ${p.tone}`}>
+            <div className={`relative ${i === 0 ? "h-72 md:h-96" : "h-60 md:h-72"} overflow-hidden bg-gradient-to-br ${p.tone}`}>
               {p.live_url ? (
                 <img
                   src={screenshotUrl(p.live_url)}
@@ -42,8 +42,18 @@ export default function ProjectsGrid({ projects }: { projects: Project[] }) {
               )}
               <div className="absolute inset-0 bg-ink/20" />
 
+              {/* Featured badge */}
+              {i === 0 && (
+                <div className="absolute left-4 top-4 flex items-center gap-1.5 rounded-full bg-accent px-3 py-1 text-xs font-bold text-ink">
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="h-3.5 w-3.5">
+                    <path d="m12 2 2.9 6.2 6.6.8-4.9 4.5 1.3 6.5L12 17.8 6.1 20.5l1.3-6.5L2.5 9l6.6-.8z" />
+                  </svg>
+                  مشروع مميز
+                </div>
+              )}
+
               {/* Year */}
-              <div className="absolute left-4 top-4 rounded-full bg-ink/60 px-3 py-1 text-xs font-medium text-accent backdrop-blur-sm">
+              <div className={`absolute rounded-full bg-ink/60 px-3 py-1 text-xs font-medium text-accent backdrop-blur-sm ${i === 0 ? "right-4 top-4" : "left-4 top-4"}`}>
                 {p.year}
               </div>
 

@@ -26,11 +26,11 @@ export default function Process({ processSteps }: { processSteps: ProcessStep[] 
         </div>
 
         <div ref={ref} className="relative grid gap-5 md:grid-cols-4">
-          <div className="absolute left-0 right-0 top-16 hidden h-px bg-white/10 md:block" />
+          <div className="timeline-line absolute left-0 right-0 top-16 hidden md:block" />
 
           {processSteps.map((ps, i) => (
             <div key={ps.step} ref={setChildRef(i + 1)} className="reveal relative">
-              <div className="card group rounded-2xl p-7">
+              <div className="card spotlight group relative h-full rounded-2xl p-7">
                 <div className="flex items-center justify-between">
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-paper transition-colors duration-300 group-hover:border-accent/40 group-hover:bg-accent group-hover:text-ink">
                     <Icon name={ps.icon} className="h-6 w-6" />

@@ -3,9 +3,36 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import type { Service } from "@/lib/data";
 import Icon from "@/components/icons";
+import { useState } from "react";
 
 export default function Services({ services }: { services: Service[] }) {
   const { ref, setChildRef } = useScrollReveal({ staggerMs: 80 });
+
+  function TiltCard({ s, innerRef }: { s: Service; innerRef: (el: HTMLDivElement | null) => void }) {
+    const [t, setT] = useState({ rx: 0, ry: 0 });
+    return (
+      <div
+        ref={innerRef}
+        className="reveal"
+        onMouseMove={(e) => {
+          const r = e.currentTarget.getBoundingClientRect();
+          const rx = ((e.clientY - r.top) / r.height - 0.5) * -6;
+          const ry = ((e.clientX - r.left) / r.width - 0.5) * 6;
+          setT({ rx, ry });
+        }}
+        onMouseLeave={() => setT({ rx: 0, ry: 0 })}
+        style={{ transform: `perspective(800px) rotateX(${t.rx}deg) rotateY(${t.ry}deg)` }}
+      >
+        <div className="tilt-inner card corner-glow group relative h-full rounded-2xl p-7">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-paper transition-colors duration-300 group-hover:border-accent/40 group-hover:bg-accent group-hover:text-ink">
+            <Icon name={s.icon} className="h-6 w-6" />
+          </div>
+          <h3 className="mt-5 text-xl font-bold text-accent">{s.title}</h3>
+          <p className="mt-2.5 text-sm leading-relaxed text-white/55">{s.description}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <section id="services" className="relative border-t border-white/[0.06] py-24 md:py-32">
@@ -25,17 +52,7 @@ export default function Services({ services }: { services: Service[] }) {
 
         <div ref={ref} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s, i) => (
-            <div
-              key={s.title}
-              ref={setChildRef(i + 1)}
-              className="card group rounded-2xl p-7"
-            >
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-paper transition-colors duration-300 group-hover:border-accent/40 group-hover:bg-accent group-hover:text-ink">
-                <Icon name={s.icon} className="h-6 w-6" />
-              </div>
-              <h3 className="mt-5 text-xl font-bold text-accent">{s.title}</h3>
-              <p className="mt-2.5 text-sm leading-relaxed text-white/55">{s.description}</p>
-            </div>
+            <TiltCard key={s.title} s={s} innerRef={setChildRef(i + 1)} />
           ))}
         </div>
       </div>

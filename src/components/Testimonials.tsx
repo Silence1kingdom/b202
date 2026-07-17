@@ -24,7 +24,8 @@ export default function Testimonials({ testimonials }: { testimonials: Testimoni
 
         <div ref={ref} className="grid gap-5 md:grid-cols-3">
           {testimonials.map((t, i) => (
-            <div key={t.name} ref={setChildRef(i + 1)} className="card reveal rounded-2xl p-7">
+            <div key={t.name} ref={setChildRef(i + 1)} className="card spotlight reveal relative overflow-hidden rounded-2xl p-7">
+              <span className="quote-mark" aria-hidden>“</span>
               <div className="flex gap-1 text-accent">
                 {[...Array(5)].map((_, j) => (
                   <Icon key={j} name="star" className="h-4 w-4" />

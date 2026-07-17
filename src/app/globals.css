@@ -273,6 +273,87 @@ body {
   100% { transform: translateX(320%); }
 }
 
+/* ── Animated mesh gradient background ── */
+.mesh-bg {
+  background:
+    radial-gradient(40% 50% at 15% 20%, rgba(245, 158, 11, 0.10), transparent 60%),
+    radial-gradient(35% 45% at 85% 15%, rgba(37, 99, 235, 0.10), transparent 60%),
+    radial-gradient(45% 55% at 75% 85%, rgba(22, 163, 74, 0.08), transparent 60%),
+    radial-gradient(40% 50% at 20% 80%, rgba(245, 158, 11, 0.06), transparent 60%);
+  background-size: 200% 200%;
+  animation: meshShift 18s ease-in-out infinite;
+}
+@keyframes meshShift {
+  0%, 100% { background-position: 0% 0%, 100% 0%, 100% 100%, 0% 100%; }
+  50% { background-position: 30% 20%, 70% 30%, 60% 70%, 20% 80%; }
+}
+
+/* ── Mouse-follow glow (set --mx/--my via JS) ── */
+.glow-follow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(380px circle at var(--mx, 50%) var(--my, 50%), rgba(245, 158, 11, 0.10), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.glow-follow:hover::before { opacity: 1; }
+
+/* ── Tilt card ── */
+.tilt {
+  transform-style: preserve-3d;
+  transition: transform 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform;
+}
+.tilt-inner { transform: translateZ(40px); }
+
+/* ── Corner glow on hover ── */
+.corner-glow::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  inset-inline-end: 0;
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle at top right, rgba(245, 158, 11, 0.18), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.corner-glow:hover::after { opacity: 1; }
+
+/* ── Quote mark for testimonials ── */
+.quote-mark {
+  position: absolute;
+  top: 0.5rem;
+  inset-inline-start: 1rem;
+  font-size: 6rem;
+  line-height: 1;
+  font-family: Georgia, "Times New Roman", serif;
+  color: rgba(245, 158, 11, 0.12);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── Gradient timeline connector ── */
+.timeline-line {
+  background: linear-gradient(90deg, transparent, var(--accent), var(--electric), transparent);
+  height: 2px;
+}
+
+/* ── Spotlight card ── */
+.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(300px circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.06), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.spotlight:hover::before { opacity: 1; }
+
 /* ── Admin panel ── */
 .admin-link {
   display: block;
