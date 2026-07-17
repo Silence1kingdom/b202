@@ -84,6 +84,9 @@ export default function Contact() {
     setStatus("loading");
     setError("");
 
+    const text = encodeURIComponent(buildWhatsappMessage(form));
+    window.open(`${WHATSAPP_LINK}?text=${text}`, "_blank", "noopener,noreferrer");
+
     try {
       const supabase = getSupabase();
       if (supabase) {
@@ -101,9 +104,6 @@ export default function Contact() {
     } catch (err) {
       console.error("[leads] insert failed:", err);
     }
-
-    const text = encodeURIComponent(buildWhatsappMessage(form));
-    window.open(`${WHATSAPP_LINK}?text=${text}`, "_blank", "noopener,noreferrer");
 
     setStatus("success");
     setForm({ name: "", email: "", budget: "", message: "" });

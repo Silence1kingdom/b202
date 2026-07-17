@@ -94,6 +94,16 @@ export async function adminDelete(slug: string, id: string): Promise<{ error?: s
   const entity = getEntity(slug);
   if (!entity) return { error: "كيان غير معروف" };
 
+  let deletedSlug: string | undefined;
+  if (slug === "projects") {
+    const { data: before } = await supabase
+      .from(entity.table)
+      .select("slug")
+      .eq("id", id)
+      .single();
+    deletedSlug = (before as any)?.slug;
+  }
+
   const { error } = await supabase.from(entity.table).delete().eq("id", id);
   if (error) return { error: error.message };
 
@@ -101,8 +111,8 @@ export async function adminDelete(slug: string, id: string): Promise<{ error?: s
   revalidatePath("/admin");
   revalidatePath("/");
   revalidatePath("/work");
-  if (slug === "projects") {
-    revalidatePath(`/work/${id}`);
+  if (slug === "projects" && deletedSlug) {
+    revalidatePath(`/work/${deletedSlug}`);
   }
   return {};
 }

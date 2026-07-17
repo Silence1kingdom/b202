@@ -52,6 +52,8 @@ export default async function ProjectDetail({
   const prev = projects[(index - 1 + projects.length) % projects.length];
   const next = projects[(index + 1) % projects.length];
 
+  const tags = Array.isArray(project.tags) ? project.tags : [];
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -262,7 +264,7 @@ export default async function ProjectDetail({
 
               <h3 className="mt-10 text-lg font-bold text-accent">أهم ما يميز المشروع</h3>
               <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-                {project.tags.map((t) => (
+                  {tags.map((t) => (
                   <li key={t} className="flex items-center gap-3 text-white/70">
                     <Icon name="check" className="h-4 w-4 shrink-0 text-accent" />
                     {t}
@@ -276,7 +278,7 @@ export default async function ProjectDetail({
                   التقنيات المستخدمة
                 </h3>
                 <ul className="mt-4 space-y-3">
-                  {project.tags.map((t) => (
+                {tags.map((t) => (
                     <li key={t} className="flex items-center gap-3 text-white/70">
                       <Icon name="check" className="h-4 w-4 text-accent" />
                       {t}
