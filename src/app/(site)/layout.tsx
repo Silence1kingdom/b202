@@ -4,6 +4,7 @@ import ScrollProgress from "@/components/ScrollProgress";
 import BackToTop from "@/components/BackToTop";
 import SmoothScroll from "@/components/SmoothScroll";
 import WhatsAppFab from "@/components/WhatsAppFab";
+import { ParallaxProvider } from "@/components/Parallax";
 
 export default function SiteLayout({
   children,
@@ -14,9 +15,11 @@ export default function SiteLayout({
     <SmoothScroll>
       <ScrollProgress />
       <Navbar />
-      <div id="main" tabIndex={-1}>
-        {children}
-      </div>
+      <ParallaxProvider>
+        <div id="main" tabIndex={-1}>
+          {children}
+        </div>
+      </ParallaxProvider>
       <Footer />
       <BackToTop />
       <WhatsAppFab />
