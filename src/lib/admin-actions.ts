@@ -77,10 +77,15 @@ export async function adminSave(
     error = (await supabase.from(entity.table).insert(row)).error;
   }
   if (error) return { error: error.message };
+
   revalidatePath(`/admin/${slug}`);
   revalidatePath("/admin");
   revalidatePath("/");
   revalidatePath("/work");
+  if (slug === "projects") {
+    const slugVal = String(row.slug || formData.get("slug") || "").trim();
+    if (slugVal) revalidatePath(`/work/${slugVal}`);
+  }
   redirect(`/admin/${slug}`);
 }
 
@@ -96,5 +101,8 @@ export async function adminDelete(slug: string, id: string): Promise<{ error?: s
   revalidatePath("/admin");
   revalidatePath("/");
   revalidatePath("/work");
+  if (slug === "projects") {
+    revalidatePath(`/work/${id}`);
+  }
   return {};
 }

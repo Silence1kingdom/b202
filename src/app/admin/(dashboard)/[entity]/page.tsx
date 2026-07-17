@@ -47,7 +47,23 @@ export default async function EntityList({
             )}
             {rows.map((row: any) => (
               <tr key={row.id} className="transition-colors hover:bg-white/[0.02]">
-                <td className="admin-td font-medium">{row[entity.titleField]}</td>
+                <td className="admin-td font-medium">
+                  <div className="flex items-center gap-3">
+                    {entity.slug === "projects" && row.live_url && (
+                      <img
+                        src={`https://api.microlink.io/?url=${encodeURIComponent(
+                          row.live_url
+                        )}&screenshot=true&meta=false&embed=screenshot.url&viewport.width=200&viewport.height=125&waitUntil=domcontentloaded`}
+                        alt={row[entity.titleField]}
+                        loading="lazy"
+                        width={48}
+                        height={30}
+                        className="hidden h-9 w-14 rounded-md object-cover object-top ring-1 ring-white/10 sm:block"
+                      />
+                    )}
+                    <span className="truncate">{row[entity.titleField]}</span>
+                  </div>
+                </td>
                 {entity.subtitleField && (
                   <td className="admin-td text-white/50">{row[entity.subtitleField]}</td>
                 )}

@@ -34,7 +34,10 @@ export default function EntityForm({
 
       {entity.fields.map((f) => (
         <div key={f.name}>
-          <label className="mb-1.5 block text-sm text-white/60">{f.label}</label>
+          <label className="mb-1.5 block text-sm text-white/60">
+            {f.label}
+            {f.required && <span className="text-accent"> *</span>}
+          </label>
 
           {f.type === "textarea" ? (
             <textarea
@@ -69,6 +72,10 @@ export default function EntityForm({
               required={f.required}
               className="admin-input"
             />
+          )}
+
+          {f.placeholder && f.type !== "boolean" && (
+            <p className="mt-1 text-xs text-white/30">مثال: {f.placeholder}</p>
           )}
         </div>
       ))}
