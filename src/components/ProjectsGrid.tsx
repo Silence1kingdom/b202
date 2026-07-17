@@ -94,7 +94,7 @@ export default function ProjectsGrid({ projects }: { projects: Project[] }) {
               </div>
 
               {p.live_url && (
-                <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-medium text-emerald-400">
+                <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-medium text-success">
                   <Icon name="check" className="h-3.5 w-3.5" />
                   الموقع متاح للزيارة
                 </span>

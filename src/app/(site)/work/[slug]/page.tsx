@@ -39,7 +39,7 @@ export default async function ProjectDetail({
             </span>
             <span className="text-xs text-white/40">{project.year}</span>
             {project.live_url && (
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1.5 text-xs font-medium text-emerald-400">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-success/30 bg-success/10 px-3 py-1.5 text-xs font-medium text-success">
                 <Icon name="check" className="h-3.5 w-3.5" />
                 موقع متاح للزيارة
               </span>

@@ -5,9 +5,15 @@
 :root {
   color-scheme: dark;
   --ink: #0a0a0b;
+  --paper: #fafafa;
   --line: rgba(255, 255, 255, 0.08);
   --line-strong: rgba(255, 255, 255, 0.16);
   --accent: #f59e0b;
+  --accent-soft: #fbbf24;
+  --electric: #2563EB;
+  --success: #16a34a;
+  --warm: #F5F0EB;
+  --muted: #9CA3AF;
 }
 
 * {

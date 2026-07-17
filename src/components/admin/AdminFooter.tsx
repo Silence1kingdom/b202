@@ -4,7 +4,7 @@ export default function AdminFooter() {
       <div className="flex flex-col items-center justify-between gap-2 text-xs text-white/35 sm:flex-row">
         <span>© {new Date().getFullYear()} B_20 — لوحة التحكم</span>
         <span className="flex items-center gap-1.5">
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+          <span className="h-1.5 w-1.5 rounded-full bg-success" />
           جميع الأنظمة تعمل
         </span>
       </div>

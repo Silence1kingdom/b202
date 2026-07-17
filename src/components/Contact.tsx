@@ -116,7 +116,7 @@ export default function Contact() {
     <section id="contact" className="relative overflow-hidden border-t border-white/[0.06] py-24 md:py-32">
       {/* Ambient glows */}
       <div className="pointer-events-none absolute -top-24 right-10 h-80 w-80 rounded-full bg-accent/10 blur-[140px]" />
-      <div className="pointer-events-none absolute -bottom-24 left-10 h-80 w-80 rounded-full bg-emerald-500/10 blur-[140px]" />
+      <div className="pointer-events-none absolute -bottom-24 left-10 h-80 w-80 rounded-full bg-success/10 blur-[140px]" />
 
       <div className="container-x relative">
         <div ref={ref} className="grid gap-12 lg:grid-cols-[0.9fr,1.1fr] lg:gap-16">
@@ -191,13 +191,13 @@ export default function Contact() {
           <div ref={setChildRef(1)} className="reveal">
             <div className="card group relative overflow-hidden rounded-3xl p-7 md:p-10">
               {/* glow ring on hover */}
-              <div className="pointer-events-none absolute -inset-px rounded-3xl bg-gradient-to-br from-accent/30 via-transparent to-emerald-400/30 opacity-0 transition-opacity duration-500 group-hover:opacity-100" style={{ WebkitMask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)", WebkitMaskComposite: "xor", maskComposite: "exclude", padding: "1px" }} />
+              <div className="pointer-events-none absolute -inset-px rounded-3xl bg-gradient-to-br from-accent/30 via-transparent to-success/30 opacity-0 transition-opacity duration-500 group-hover:opacity-100" style={{ WebkitMask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)", WebkitMaskComposite: "xor", maskComposite: "exclude", padding: "1px" }} />
 
               <div className="relative">
                 <div className="mb-6 flex items-center justify-between">
                   <h3 className="text-lg font-bold text-paper">أطلب مشروعك</h3>
-                  <span className="flex items-center gap-1.5 rounded-full bg-emerald-400/10 px-3 py-1 text-xs font-medium text-emerald-300">
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                  <span className="flex items-center gap-1.5 rounded-full bg-success/10 px-3 py-1 text-xs font-medium text-success">
+                    <span className="h-1.5 w-1.5 rounded-full bg-success" />
                     واتساب
                   </span>
                 </div>
@@ -284,7 +284,7 @@ export default function Contact() {
                       <label>رسالتك — حكي لنا عن فكرتك</label>
                       <div className="mt-1 flex items-center justify-between text-xs">
                         <span className="text-white/40">{form.message.length}/500</span>
-                        {isFilled && <span className="text-emerald-400">جاهز للإرسال 🚀</span>}
+                        {isFilled && <span className="text-success">جاهز للإرسال 🚀</span>}
                       </div>
                     </div>
 

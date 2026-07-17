@@ -60,7 +60,7 @@ export default async function TeamPage() {
                 {/* Cover gradient */}
                 <div className="relative h-28 overflow-hidden bg-gradient-to-br from-accent/25 via-accent/5 to-transparent">
                   <div className="pointer-events-none absolute -right-8 -top-10 h-40 w-40 rounded-full bg-accent/15 blur-3xl" />
-                  <div className="pointer-events-none absolute -bottom-12 left-10 h-32 w-32 rounded-full bg-emerald-400/10 blur-3xl" />
+                  <div className="pointer-events-none absolute -bottom-12 left-10 h-32 w-32 rounded-full bg-success/10 blur-3xl" />
                 </div>
 
                 {/* Avatar overlapping */}

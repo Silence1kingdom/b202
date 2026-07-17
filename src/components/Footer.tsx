@@ -59,7 +59,7 @@ export default function Footer() {
                       {l.label}
                     </Link>
                   ) : (
-                    <a href={l.href} className="text-sm text-white/45 transition-colors duration-300 hover:text-accent">
+                    <a href={l.href} className="text-sm text-white/45 transition-colors duration-300 hover:text-electric">
                       {l.label}
                     </a>
                   )}

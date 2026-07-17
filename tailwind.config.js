@@ -7,6 +7,10 @@ module.exports = {
         ink: "#0a0a0b",
         paper: "#fafafa",
         accent: "#f59e0b",
+        electric: "#2563EB",
+        success: "#16a34a",
+        warm: "#F5F0EB",
+        muted: "#9CA3AF",
       },
       fontFamily: {
         sans: ["var(--font-inter)", "var(--font-tajawal)", "system-ui", "sans-serif"],
