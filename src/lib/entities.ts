@@ -133,6 +133,7 @@ export const entities: EntityDef[] = [
     fields: [
       { name: "name", label: "الاسم", type: "text", required: true },
       { name: "role", label: "الوظيفة", type: "text", placeholder: "مؤسس وشريك تقني" },
+      { name: "bio", label: "نبذة قصيرة", type: "textarea", placeholder: "خبرة في..." },
       { name: "avatar", label: "حرف الصورة", type: "text", placeholder: "ع" },
       { name: "sort_order", label: "الترتيب", type: "number" },
     ],
