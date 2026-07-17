@@ -9,6 +9,12 @@ export const metadata: Metadata = {
   title: "الأعمال — B_20",
   description:
     "معرض أعمال فريق B_20: متاجر إلكترونية، منتجات SaaS، مواقع تعريفية، ومنصات تعليمية.",
+  alternates: { canonical: "/work" },
+  openGraph: {
+    title: "الأعمال — B_20",
+    description: "معرض أعمال فريق B_20: متاجر إلكترونية، منتجات SaaS، مواقع تعريفية.",
+    url: "/work",
+  },
 };
 
 export default async function WorkPage() {

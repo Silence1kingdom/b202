@@ -26,20 +26,57 @@ const tajawal = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "B_20 — نبني مواقع تعيش طويلاً",
+  metadataBase: new URL("https://b202.vercel.app"),
+  title: {
+    default: "B_20 — نبني مواقع تعيش طويلاً",
+    template: "%s — B_20",
+  },
   description:
     "فريق B_20 لبناء المواقع والمنتجات الرقمية. نصمم ونبني تجارب رقمية سريعة، حديثة، وموثوقة. مبني بـ Next.js + Supabase + Vercel.",
-  keywords: ["مواقع ويب", "تصميم مواقع", "تطوير مواقع", "B_20", "Next.js", "Supabase", "Vercel"],
+  keywords: ["مواقع ويب", "تصميم مواقع", "تطوير مواقع", "B_20", "Next.js", "Supabase", "Vercel", "استوديو رقمي"],
+  authors: [{ name: "B_20" }],
+  creator: "B_20",
+  category: "technology",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "B_20 — Web Studio",
-    description: "فريق B_20 لبناء المواقع والمنتجات الرقمية.",
     type: "website",
     locale: "ar_SA",
+    url: "https://b202.vercel.app",
+    siteName: "B_20",
+    title: "B_20 — Web Studio",
+    description: "فريق B_20 لبناء المواقع والمنتجات الرقمية. نصمم ونبني تجارب رقمية سريعة وحديثة وموثوقة.",
   },
   twitter: {
     card: "summary_large_image",
     title: "B_20 — Web Studio",
     description: "فريق B_20 لبناء المواقع والمنتجات الرقمية.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "B_20",
+  url: "https://b202.vercel.app",
+  description:
+    "فريق B_20 لبناء المواقع والمنتجات الرقمية. نصمم ونبني تجارب رقمية سريعة وحديثة وموثوقة.",
+  sameAs: ["https://wa.me/201222239634"],
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+201222239634",
+    contactType: "sales",
   },
 };
 
@@ -50,7 +87,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ar" dir="rtl" className={`${inter.variable} ${tajawal.variable}`}>
-      <body className="bg-ink font-sans text-paper antialiased">{children}</body>
+      <body className="bg-ink font-sans text-paper antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

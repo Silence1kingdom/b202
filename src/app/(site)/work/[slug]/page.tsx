@@ -1,9 +1,34 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import Icon from "@/components/icons";
 import { getProjects, getProjectBySlug } from "@/lib/queries";
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const project = await getProjectBySlug(params.slug);
+  if (!project) return { title: "المشروع غير موجود" };
+
+  const desc = project.description.length > 150
+    ? project.description.slice(0, 147) + "…"
+    : project.description;
+
+  return {
+    title: project.title,
+    description: desc,
+    alternates: { canonical: `/work/${project.slug}` },
+    openGraph: {
+      title: `${project.title} — B_20`,
+      description: desc,
+      url: `/work/${project.slug}`,
+    },
+  };
+}
 
 export default async function ProjectDetail({
   params,
@@ -91,6 +116,9 @@ export default async function ProjectDetail({
                   )}&screenshot=true&meta=false&embed=screenshot.url&viewport.width=1280&viewport.height=800&waitUntil=domcontentloaded`}
                   alt={project.title}
                   loading="lazy"
+                  decoding="async"
+                  width={1280}
+                  height={800}
                   className="absolute inset-0 h-full w-full object-cover object-top"
                 />
               ) : (

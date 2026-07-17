@@ -31,6 +31,9 @@ export default function ProjectsGrid({ projects }: { projects: Project[] }) {
                   src={screenshotUrl(p.live_url)}
                   alt={p.title}
                   loading="lazy"
+                  decoding="async"
+                  width={1024}
+                  height={i === 0 ? 768 : 640}
                   className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                 />
               ) : (
