@@ -3,7 +3,7 @@ import Link from "next/link";
 import WorkGallery from "@/components/WorkGallery";
 import { getProjects } from "@/lib/queries";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "الأعمال — B_20",

@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import Icon from "@/components/icons";
 import { getProjects, getProjectBySlug } from "@/lib/queries";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 const WHATSAPP = "https://wa.me/201222239634";
 
@@ -36,7 +36,7 @@ export async function generateMetadata({
 function screenshot(liveUrl: string, w: number, h: number) {
   return `https://api.microlink.io/?url=${encodeURIComponent(
     liveUrl
-  )}&screenshot=true&meta=false&embed=screenshot.url&viewport.width=${w}&viewport.height=${h}&waitUntil=domcontentloaded`;
+  )}&screenshot=true&meta=false&embed=screenshot.url&viewport.width=${w}&viewport.height=${h}&waitUntil=domcontentloaded&ttl=86400s`;
 }
 
 export default async function ProjectDetail({

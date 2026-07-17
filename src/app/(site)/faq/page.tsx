@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Faq from "@/components/Faq";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "الأسئلة الشائعة — B_20",

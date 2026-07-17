@@ -1,4 +1,4 @@
-import { createSupabaseServerClient } from "./supabase/server";
+import { createSupabasePublicClient } from "./supabase/server";
 import type {
   Project,
   Service,
@@ -14,7 +14,7 @@ async function getAll<T>(
   order: string,
   ascending = true
 ): Promise<T[]> {
-  const supabase = createSupabaseServerClient();
+  const supabase = createSupabasePublicClient();
   const { data, error } = await supabase
     .from(table)
     .select("*")
@@ -49,7 +49,7 @@ export async function getTeam(): Promise<Member[]> {
 }
 
 export async function getProjectBySlug(slug: string): Promise<Project | null> {
-  const supabase = createSupabaseServerClient();
+  const supabase = createSupabasePublicClient();
   const { data, error } = await supabase
     .from("projects")
     .select("*")

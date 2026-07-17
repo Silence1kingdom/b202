@@ -87,10 +87,12 @@ export default function Contact() {
     const text = encodeURIComponent(buildWhatsappMessage(form));
     window.open(`${WHATSAPP_LINK}?text=${text}`, "_blank", "noopener,noreferrer");
 
-    try {
-      const supabase = getSupabase();
-      if (supabase) {
-        const { error: dbError } = await supabase.from("leads").insert([
+    // Save the lead in the background — never block the UI on DB latency.
+    (async () => {
+      try {
+        const supabase = getSupabase();
+        if (!supabase) return;
+        const save = supabase.from("leads").insert([
           {
             name: form.name.trim(),
             email: form.email.trim(),
@@ -99,11 +101,15 @@ export default function Contact() {
             read: false,
           },
         ]);
+        const timeout = new Promise((_, rej) =>
+          setTimeout(() => rej(new Error("timeout")), 4000)
+        );
+        const { error: dbError } = (await Promise.race([save, timeout])) as any;
         if (dbError) console.error("[leads] insert:", dbError.message);
+      } catch (err) {
+        console.error("[leads] insert failed:", err);
       }
-    } catch (err) {
-      console.error("[leads] insert failed:", err);
-    }
+    })();
 
     setStatus("success");
     setForm({ name: "", email: "", budget: "", message: "" });

@@ -53,7 +53,7 @@ export default async function EntityList({
                       <img
                         src={`https://api.microlink.io/?url=${encodeURIComponent(
                           row.live_url
-                        )}&screenshot=true&meta=false&embed=screenshot.url&viewport.width=200&viewport.height=125&waitUntil=domcontentloaded`}
+                        )}&screenshot=true&meta=false&embed=screenshot.url&viewport.width=200&viewport.height=125&waitUntil=domcontentloaded&ttl=86400s`}
                         alt={row[entity.titleField]}
                         loading="lazy"
                         width={48}
