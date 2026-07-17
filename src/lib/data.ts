@@ -56,4 +56,6 @@ export type Member = {
   bio?: string;
   skills?: string[];
   avatar: string;
+  tone?: string;
+  links?: { label: string; href: string; icon: "whatsapp" | "email" | "twitter" | "linkedin" | "github" | "globe" }[];
 };
