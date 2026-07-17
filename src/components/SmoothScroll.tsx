@@ -8,7 +8,10 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     const prefersReduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
-    if (prefersReduced) return;
+    const isTouch = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+    // Disable Lenis on touch devices and for reduced-motion users.
+    // Native scrolling is smoother and more reliable on mobile.
+    if (prefersReduced || isTouch) return;
 
     const lenis = new Lenis({
       duration: 1.15,
