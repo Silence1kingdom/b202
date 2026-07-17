@@ -14,7 +14,7 @@ export default async function DashboardLayout({
   if (!(await isAuthed())) redirect("/admin/login");
 
   return (
-    <div className="flex min-h-screen bg-ink text-paper">
+    <div className="flex min-h-[100dvh] bg-ink text-paper">
       {/* Sidebar */}
       <aside className="fixed inset-y-0 right-0 z-40 flex w-64 flex-col border-l border-white/10 bg-white/[0.02] p-5">
         <Link href="/admin" className="flex items-center gap-2.5">
@@ -53,7 +53,7 @@ export default async function DashboardLayout({
       </aside>
 
       {/* Main */}
-      <div className="flex min-h-screen flex-1 flex-col pr-64">
+      <div className="flex min-h-[100dvh] flex-1 flex-col pr-64">
         <AdminHeader />
         <main className="flex-1 px-6 py-8">{children}</main>
         <AdminFooter />

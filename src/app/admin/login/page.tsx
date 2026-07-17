@@ -16,7 +16,7 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-ink px-6 py-12">
+    <main className="relative flex min-h-[100dvh] items-center justify-center overflow-hidden bg-ink px-6 py-12">
       {/* Decorative background */}
       <div className="pointer-events-none absolute inset-0 dot-grid opacity-40" />
       <div className="pointer-events-none absolute -top-32 right-0 h-[420px] w-[420px] rounded-full bg-accent/10 blur-[130px]" />

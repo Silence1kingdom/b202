@@ -47,7 +47,7 @@ export default function ProjectsGrid({ projects }: { projects: Project[] }) {
 
               {/* Featured badge */}
               {i === 0 && (
-                <div className="absolute left-4 top-4 flex items-center gap-1.5 rounded-full bg-accent px-3 py-1 text-xs font-bold text-ink">
+                <div className="absolute left-4 top-4 flex items-center gap-1.5 rounded-full bg-accent px-3 py-1 text-xs font-bold text-ink rtl:right-4 rtl:left-auto">
                   <svg viewBox="0 0 24 24" fill="currentColor" className="h-3.5 w-3.5">
                     <path d="m12 2 2.9 6.2 6.6.8-4.9 4.5 1.3 6.5L12 17.8 6.1 20.5l1.3-6.5L2.5 9l6.6-.8z" />
                   </svg>
@@ -56,7 +56,7 @@ export default function ProjectsGrid({ projects }: { projects: Project[] }) {
               )}
 
               {/* Year */}
-              <div className={`absolute rounded-full bg-ink/60 px-3 py-1 text-xs font-medium text-accent backdrop-blur-sm ${i === 0 ? "right-4 top-4" : "left-4 top-4"}`}>
+              <div className="absolute right-4 top-4 rounded-full bg-ink/60 px-3 py-1 text-xs font-medium text-accent backdrop-blur-sm rtl:left-4 rtl:right-auto">
                 {p.year}
               </div>
 
@@ -67,7 +67,7 @@ export default function ProjectsGrid({ projects }: { projects: Project[] }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  className="absolute right-4 top-4 flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1.5 text-xs font-medium text-white opacity-0 backdrop-blur-sm transition-all duration-300 hover:bg-white/25 group-hover:opacity-100"
+                  className="absolute right-4 top-4 flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/25 md:opacity-0 md:group-hover:opacity-100"
                 >
                   <Icon name="globe" className="h-3.5 w-3.5" />
                   زيارة الموقع
@@ -75,7 +75,7 @@ export default function ProjectsGrid({ projects }: { projects: Project[] }) {
               )}
 
               {/* Hover overlay with tags */}
-              <div className="absolute inset-0 flex items-end bg-gradient-to-t from-ink via-ink/50 to-transparent p-6 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+              <div className="absolute inset-0 flex items-end bg-gradient-to-t from-ink via-ink/50 to-transparent p-6 opacity-100 transition-opacity duration-500 md:opacity-0 md:group-hover:opacity-100">
                 <div className="flex flex-wrap gap-2">
                   {p.tags.map((t) => (
                     <span

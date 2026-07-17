@@ -28,7 +28,7 @@ export default function Hero({ stats }: { stats: Stat[] }) {
   return (
     <section
       onMouseMove={onMove}
-      className="glow-follow relative flex min-h-screen items-center overflow-hidden"
+      className="glow-follow relative flex min-h-[100dvh] items-center overflow-hidden"
       style={{ ["--mx" as string]: `${pos.x}%`, ["--my" as string]: `${pos.y}%` }}
     >
       <div className="absolute inset-0 dot-grid opacity-40" />
@@ -65,9 +65,9 @@ export default function Hero({ stats }: { stats: Stat[] }) {
             </a>
             <a href="#work" className="btn-ghost px-8 py-3.5 text-base">
               شوف أعمالنا
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-4 w-4 rotate-180">
-                <path d="M19 12H5m7-7-7 7 7 7" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
+               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-4 w-4 rtl:-scale-x-100">
+                 <path d="M19 12H5m7-7-7 7 7 7" strokeLinecap="round" strokeLinejoin="round" />
+               </svg>
             </a>
           </div>
 
