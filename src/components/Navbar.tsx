@@ -6,6 +6,7 @@ const links = [
   { href: "/#services", label: "خدماتنا" },
   { href: "/work", label: "أعمالنا" },
   { href: "/about", label: "من نحن" },
+  { href: "/team", label: "الفريق" },
   { href: "/#process", label: "الخطوات" },
   { href: "/#testimonials", label: "آراء العملاء" },
   { href: "/#contact", label: "تواصل" },
@@ -19,6 +20,10 @@ export default function Navbar() {
   useEffect(() => {
       const onScroll = () => {
         setScrolled(window.scrollY > 24);
+        if (window.location.pathname === "/team") {
+          setActive("/team");
+          return;
+        }
         const sections = links.map((l) => l.href.split("#")[1] ?? "");
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);
