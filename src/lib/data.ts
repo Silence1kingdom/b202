@@ -54,5 +54,6 @@ export type Member = {
   name: string;
   role: string;
   bio?: string;
+  skills?: string[];
   avatar: string;
 };

@@ -134,6 +134,7 @@ export const entities: EntityDef[] = [
       { name: "name", label: "الاسم", type: "text", required: true },
       { name: "role", label: "الوظيفة", type: "text", placeholder: "مؤسس وشريك تقني" },
       { name: "bio", label: "نبذة قصيرة", type: "textarea", placeholder: "خبرة في..." },
+      { name: "skills", label: "المهارات (مفصولة بفاصلة)", type: "tags", placeholder: "Next.js, Figma" },
       { name: "avatar", label: "حرف الصورة", type: "text", placeholder: "ع" },
       { name: "sort_order", label: "الترتيب", type: "number" },
     ],
