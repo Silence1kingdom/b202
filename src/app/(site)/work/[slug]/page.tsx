@@ -3,13 +3,7 @@ import { notFound } from "next/navigation";
 import Icon from "@/components/icons";
 import { getProjects, getProjectBySlug } from "@/lib/queries";
 
-export const revalidate = 300;
-export const dynamicParams = true;
-
-export async function generateStaticParams() {
-  const projects = await getProjects();
-  return projects.map((p) => ({ slug: p.slug }));
-}
+export const dynamic = "force-dynamic";
 
 export default async function ProjectDetail({
   params,

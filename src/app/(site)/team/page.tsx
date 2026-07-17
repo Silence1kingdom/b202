@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getTeam } from "@/lib/queries";
 
-export const revalidate = 300;
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "الفريق — B_20",

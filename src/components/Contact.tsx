@@ -54,16 +54,15 @@ function buildWhatsappMessage(form: {
 *مرحباً* ${name} 
 *عندك طلب جديد، وده تفاصيله:*
 
-*الاسم:* ${name}
-*البريد:* ${escapeWhatsapp(form.email)}
-*الميزانية:* ${budget}
-*الرسالة:*
-${escapeWhatsapp(form.message)}
+*الاسم:>>* ${name}.
+*البريد:>>* ${escapeWhatsapp(form.email)}.
+*الميزانية:>>* ${budget}.
+*الرسالة:>>*
+${escapeWhatsapp(form.message)}.
+*التاريخ:>>* ${date}.
+*الوقت:>>* ${time}.
 
-*التاريخ:* ${date}
-*الوقت:* ${time}
-
- *سوف يتم الرد في اقرب وقت*
+ <<*سوف يتم الرد في اقرب وقت*>>
 `;
 }
 

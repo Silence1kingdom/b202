@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import AboutContent from "@/components/AboutContent";
 import { getValues, getTeam, getStats } from "@/lib/queries";
 
-export const revalidate = 300;
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "من نحن — B_20",
