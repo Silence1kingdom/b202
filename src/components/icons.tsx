@@ -104,6 +104,24 @@ const paths: Record<string, JSX.Element> = {
   star: (
     <path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 17l-5.2 2.7 1-5.8L3.5 9.7l5.9-.9L12 3.5Z" />
   ),
+  monitor: (
+    <>
+      <rect x="3" y="4" width="18" height="12" rx="2" />
+      <path d="M9 20h6M12 16v4" />
+    </>
+  ),
+  tablet: (
+    <>
+      <rect x="6" y="3" width="12" height="18" rx="2" />
+      <path d="M11 18h2" />
+    </>
+  ),
+  phone: (
+    <>
+      <rect x="8" y="2" width="8" height="20" rx="2" />
+      <path d="M11 18h2" />
+    </>
+  ),
   alert: (
     <>
       <path d="M12 3 2 20h20L12 3Z" />
