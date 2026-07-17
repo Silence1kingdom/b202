@@ -88,6 +88,7 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl" className={`${inter.variable} ${tajawal.variable}`}>
       <body className="bg-ink font-sans text-paper antialiased">
+        <a href="#main" className="skip-link">تخطّي لل content</a>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

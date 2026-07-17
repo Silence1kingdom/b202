@@ -93,6 +93,8 @@ export default function Navbar() {
             onClick={() => setMobileOpen((v) => !v)}
             className="relative z-50 flex h-10 w-10 items-center justify-center text-paper md:hidden"
             aria-label="القائمة"
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
           >
             <div className="flex flex-col gap-1.5">
               <span
@@ -116,6 +118,7 @@ export default function Navbar() {
       </header>
 
       <div
+        id="mobile-menu"
         className={`fixed inset-0 z-40 bg-ink transition-opacity duration-500 md:hidden ${
           mobileOpen ? "opacity-100" : "pointer-events-none opacity-0"
         }`}

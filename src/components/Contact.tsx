@@ -203,7 +203,7 @@ export default function Contact() {
                 </div>
 
                 {status === "success" ? (
-                  <div className="flex flex-col items-center py-10 text-center">
+                   <div className="flex flex-col items-center py-10 text-center" role="status" aria-live="polite">
                     <div className="flex h-16 w-16 items-center justify-center rounded-full bg-accent/15 text-accent">
                       <Icon name="check" className="h-8 w-8" />
                     </div>
@@ -221,14 +221,14 @@ export default function Contact() {
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="grid gap-5 md:grid-cols-2">
-                      <div className="field">
-                        <input name="name" required value={form.name} onChange={handleChange} placeholder=" " />
-                        <label>الاسم الكامل</label>
-                      </div>
-                      <div className="field">
-                        <input name="email" type="email" required value={form.email} onChange={handleChange} placeholder=" " />
-                        <label>البريد الإلكتروني</label>
-                      </div>
+                       <div className="field">
+                         <input name="name" required value={form.name} onChange={handleChange} placeholder=" " aria-label="الاسم الكامل" />
+                         <label>الاسم الكامل</label>
+                       </div>
+                       <div className="field">
+                         <input name="email" type="email" required value={form.email} onChange={handleChange} placeholder=" " aria-label="البريد الإلكتروني" />
+                         <label>البريد الإلكتروني</label>
+                       </div>
                     </div>
 
                     {/* Budget chips */}
@@ -279,9 +279,9 @@ export default function Contact() {
                       )}
                     </div>
 
-                    <div className="field">
-                      <textarea name="message" required rows={5} value={form.message} onChange={handleChange} placeholder=" " maxLength={500} />
-                      <label>رسالتك — حكي لنا عن فكرتك</label>
+                     <div className="field">
+                       <textarea name="message" required rows={5} value={form.message} onChange={handleChange} placeholder=" " maxLength={500} aria-label="رسالتك" />
+                       <label>رسالتك — حكي لنا عن فكرتك</label>
                       <div className="mt-1 flex items-center justify-between text-xs">
                         <span className="text-white/40">{form.message.length}/500</span>
                         {isFilled && <span className="text-success">جاهز للإرسال 🚀</span>}

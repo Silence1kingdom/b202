@@ -14,7 +14,9 @@ export default function SiteLayout({
     <SmoothScroll>
       <ScrollProgress />
       <Navbar />
-      {children}
+      <div id="main" tabIndex={-1}>
+        {children}
+      </div>
       <Footer />
       <BackToTop />
       <WhatsAppFab />
