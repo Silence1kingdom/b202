@@ -45,14 +45,15 @@ export default function Footer() {
           <div>
             <h4 className="mb-5 text-sm font-semibold uppercase tracking-widest text-white/70">روابط سريعة</h4>
             <ul className="space-y-3">
-              {[
-                { href: "/#services", label: "خدماتنا" },
-                { href: "/work", label: "أعمالنا" },
-                { href: "/about", label: "من نحن" },
-                { href: "/#process", label: "خطوات الشغل" },
-                { href: "/#contact", label: "تواصل معنا" },
-                { href: "/admin/login", label: "تسجيل الدخول", admin: true },
-               ].map((l) => (
+               {[
+                 { href: "/#services", label: "خدماتنا" },
+                 { href: "/work", label: "أعمالنا" },
+                 { href: "/about", label: "من نحن" },
+                 { href: "/faq", label: "الأسئلة الشائعة" },
+                 { href: "/#process", label: "خطوات الشغل" },
+                 { href: "/#contact", label: "تواصل معنا" },
+                 { href: "/admin/login", label: "تسجيل الدخول", admin: true },
+                ].map((l) => (
                 <li key={l.href}>
                   {l.admin ? (
                     <Link href={l.href} className="text-sm font-medium text-accent transition-opacity hover:opacity-80">

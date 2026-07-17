@@ -129,7 +129,7 @@ export default function AboutContent({
         </div>
       </section>
 
-      <section className="py-16 md:py-20">
+      <section className="pt-4">
         <div className="container-x">
           <div ref={statsHook.ref} className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.04] md:grid-cols-4">
             {stats.map((s, i) => (
@@ -145,7 +145,7 @@ export default function AboutContent({
         </div>
       </section>
 
-      <section className="pb-24 pt-4">
+      <section className="py-16 md:py-20">
         <div className="container-x">
           <div className="card reveal rounded-3xl px-8 py-12 text-center">
             <h2 className="text-3xl font-extrabold tracking-tightest md:text-4xl">جاهز تبدأ مشروعك؟</h2>
