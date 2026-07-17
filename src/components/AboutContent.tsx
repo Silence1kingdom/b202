@@ -19,6 +19,12 @@ export default function AboutContent({
   const teamHook = useScrollReveal({ staggerMs: 80 });
   const statsHook = useScrollReveal();
 
+  const timeline = [
+    { year: "2023", title: "البداية", text: "بدأت الفكرة: فريق صغير يبني مواقع سريعة وموثوقة من غير تعقيد." },
+    { year: "2024", title: "أول المشاريع", text: "سلّمنا متاجر ومنتجات SaaS لعملاء حقيقيين بتركيز على الأداء." },
+    { year: "2025", title: "B_20", text: "وحّدنا شغلنا تحت اسم B_20 — تصميم، تطوير، وإطلاق في مكان واحد." },
+  ];
+
   return (
     <>
       <section className="border-t border-white/[0.06] pb-12 pt-16 md:pt-20">
@@ -35,12 +41,44 @@ export default function AboutContent({
               إحنا فريق صغير من المصممين والمطورين بنحب الشغل الصح. بنبدأ من فكرة بسيطة
               ونوصلها لمنتج رقمي سريع، حديث، وموثوق — من غير تعقيد ولا حشو.
             </p>
-            <Link href="/work" className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent transition-opacity hover:opacity-80">
-              شوف أعمالنا
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} className="h-4 w-4 -scale-x-100">
-                <path d="M7 17 17 7M9 7h8v8" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </Link>
+            <div className="mt-6 flex flex-wrap gap-4">
+              <Link href="/work" className="inline-flex items-center gap-2 text-sm font-medium text-accent transition-opacity hover:opacity-80">
+                شوف أعمالنا
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} className="h-4 w-4 -scale-x-100">
+                  <path d="M7 17 17 7M9 7h8v8" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </Link>
+              <Link href="/team" className="inline-flex items-center gap-2 text-sm font-medium text-white/55 transition-opacity hover:text-paper">
+                تعرف على الفريق
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} className="h-4 w-4 -scale-x-100">
+                  <path d="M7 17 17 7M9 7h8v8" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Story timeline */}
+      <section className="py-16 md:py-20">
+        <div className="container-x">
+          <div className="mb-12 max-w-2xl">
+            <span className="section-label">قصتنا</span>
+            <h2 className="mt-5 text-3xl font-extrabold tracking-tightest md:text-4xl">
+              من فكرة لـ <span className="text-accent">واقع</span>
+            </h2>
+          </div>
+          <div className="relative space-y-6 border-r border-white/10 pr-8">
+            {timeline.map((t) => (
+              <div key={t.year} className="relative">
+                <span className="absolute -right-[2.35rem] top-1.5 h-3.5 w-3.5 rounded-full border-2 border-accent bg-ink" />
+                <div className="flex items-baseline gap-4">
+                  <span className="text-sm font-bold tabular-nums text-accent">{t.year}</span>
+                  <h3 className="text-lg font-bold">{t.title}</h3>
+                </div>
+                <p className="mt-1.5 text-sm leading-relaxed text-white/55">{t.text}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
