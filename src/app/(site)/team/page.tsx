@@ -55,7 +55,7 @@ export default async function TeamPage() {
             {members.map((m, i) => (
               <div
                 key={m.name}
-                className="card reveal group flex items-center gap-5 rounded-2xl p-7"
+                className="card group flex items-center gap-5 rounded-2xl p-7"
                 style={{ animationDelay: `${i * 80}ms` }}
               >
                 <div className="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-white/15 bg-gradient-to-br from-accent/20 to-accent/5 text-xl font-bold text-accent transition-transform duration-300 group-hover:scale-105">
@@ -74,7 +74,7 @@ export default async function TeamPage() {
 
       <section className="pb-24 pt-4">
         <div className="container-x">
-          <div className="card reveal rounded-3xl px-8 py-12 text-center">
+          <div className="card rounded-3xl px-8 py-12 text-center">
             <h2 className="text-3xl font-extrabold tracking-tightest md:text-4xl">جاهز تبدأ مشروعك؟</h2>
             <p className="mt-3 text-white/55">حكي لنا عن فكرتك وهنرد عليك في أقرب وقت.</p>
             <Link href="/#contact" className="btn-primary mt-7 px-8 py-3.5 text-base">
