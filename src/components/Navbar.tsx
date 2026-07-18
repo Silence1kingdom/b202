@@ -53,7 +53,7 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
+        className={`fixed top-[env(safe-area-inset-top,0px)] inset-x-0 z-50 transition-all duration-500 ${
           scrolled
             ? "border-b border-white/[0.08] bg-ink/80 backdrop-blur-xl"
             : "border-b border-transparent"

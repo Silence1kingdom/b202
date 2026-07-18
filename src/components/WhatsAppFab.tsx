@@ -23,7 +23,7 @@ export default function WhatsAppFab() {
       rel="noopener noreferrer"
       aria-label="تواصل فوري على واتساب"
       title="تواصل فوري على واتساب"
-      className={`group fixed bottom-6 left-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] shadow-2xl shadow-emerald-900/40 transition-all duration-500 hover:scale-110 hover:bg-[#1ebe5b] rtl:right-6 rtl:left-auto ${
+      className={`group fixed bottom-[calc(1.5rem+env(safe-area-inset-bottom,0px))] left-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] shadow-2xl shadow-emerald-900/40 transition-all duration-500 hover:scale-110 hover:bg-[#1ebe5b] rtl:right-6 rtl:left-auto ${
         visible
           ? "translate-y-0 opacity-100"
           : "pointer-events-none translate-y-6 opacity-0"

@@ -27,6 +27,14 @@ const tajawal = localFont({
   display: "swap",
 });
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: "cover",
+  themeColor: "#0a0a0b",
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://b202.vercel.app"),
   title: {

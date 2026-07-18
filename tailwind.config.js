@@ -46,6 +46,12 @@ module.exports = {
         marquee: "marquee 30s linear infinite",
         fadeUp: "fadeUp 0.7s cubic-bezier(0.23,1,0.32,1) forwards",
       },
+      spacing: {
+        "safe-top": "env(safe-area-inset-top, 0px)",
+        "safe-bottom": "env(safe-area-inset-bottom, 0px)",
+        "safe-left": "env(safe-area-inset-left, 0px)",
+        "safe-right": "env(safe-area-inset-right, 0px)",
+      },
     },
   },
   plugins: [],
